@@ -2,6 +2,64 @@ from matrix import *
 import unittest
 
 class MatrixTests(unittest.TestCase):
+    """
+    Class for testing matrix functions from matrix.py.
+
+    This class includes tests for the following matrix operations:
+        - Addition and subtraction of matrices
+        - Scalar multiplication
+        - Multiplication of two matrices
+        - Transposition
+        - Row operations (swap, scale, add)
+        - Determinant calculation
+        - Matrix inversion
+        - Rank calculation
+
+    Different types of matrices are used in tests:
+        - matrix_same_dim_a and matrix_same_dim_b: matrices with the same dimensions for addition/subtraction
+        - matrix_INV: invertible matrix used for testing inverse, determinant, and rank
+        - matrix_SINGULAR: singular matrix that cannot be inverted
+        - I: identity matrix
+        - Z: zero matrix
+        - to_mul1 and to_mul2: matrices for multiplication tests
+        - factor: floating-point number for scalar multiplication
+        - integer: integer number for scalar multiplication
+
+    Class methods:
+        setUp(): initializes matrices for testing
+        tearDown(): cleans up variables after tests
+        assertMatrixAlmostEqual(res, expected, places): checks if two matrices with floats are almost equal
+
+    Tests for addition:
+        test_add(), test_add_empty(), test_add_not_same()
+
+    Tests for subtraction:
+        test_sub(), test_sub_empty(), test_sub_not_same()
+
+    Tests for scalar multiplication:
+        test_mul_scalar(), test_mul_scalar_zero(), test_mul_scalar_empty()
+
+    Tests for matrix multiplication:
+        test_mul(), test_mul_empty(), test_mul_not_appropriate()
+
+    Tests for transpose:
+        test_transpose(), test_transpose_empty()
+
+    Tests for row operations:
+        test_swap(), test_swap_empty(), test_swap_not_exists()
+        test_scale(), test_scale_empty(), test_scale_zero(), test_scale_not_exists()
+        test_add_rows(), test_add_rows_empty(), test_add_rows_not_exists()
+
+    Tests for determinant:
+        test_det(), test_det_zero(), test_det_not_exists()
+
+    Tests for inverse:
+        test_inverse(), test_inverse_singular(), test_inverse_not_square()
+
+    Tests for rank:
+        test_rank(), test_rank_empty()
+    """
+
     def setUp(self):
         self.matrix_same_dim_a =[[1, 9, 6],
                                 [2, 8, 10]]
@@ -38,6 +96,8 @@ class MatrixTests(unittest.TestCase):
             for j in range(len(res[i])):
                 self.assertAlmostEqual(res[i][j], expected[i][j], places=places)
 
+#-------------testing add function----------------
+
     def test_add(self):
         res = add(self.matrix_same_dim_a, self.matrix_same_dim_b)
         expected = [[6, 12, 7],
@@ -59,7 +119,7 @@ class MatrixTests(unittest.TestCase):
 
     def test_add_not_same(self):
         self.assertRaises(ValueError, add, self.matrix_same_dim_a, self.matrix_INV)
-
+#---------------testing substraction for matrices---------------
     def test_sub(self):
         a = self.matrix_same_dim_a
         b = self.matrix_same_dim_b
@@ -84,6 +144,7 @@ class MatrixTests(unittest.TestCase):
     def test_sub_not_same(self):
         self.assertRaises(ValueError, subtract, self.matrix_same_dim_a, self.matrix_INV)
 
+#--------------testing multiplication be scalar-----------
     def test_mul_scalar(self):
         a = self.matrix_SINGULAR
         num = self.integer
@@ -122,6 +183,7 @@ class MatrixTests(unittest.TestCase):
         num = self.factor
         self.assertRaises(ValueError, multiply_scalar, a, num)
 
+#--------testing multiplication of 2 matrices---------------
     def test_mul(self):
         a = self.to_mul1
         b = self.to_mul2
@@ -156,6 +218,8 @@ class MatrixTests(unittest.TestCase):
         b = self.matrix_same_dim_b
         self.assertRaises(ValueError, multiply, a, b)
 
+#-------testing transposing of matrix----------
+
     def test_transpose(self):
         a = self.matrix_same_dim_a
         expected = [[1, 2],
@@ -170,6 +234,8 @@ class MatrixTests(unittest.TestCase):
 
         a = [[12], []]
         self.assertRaises(ValueError, transpose, a)
+
+#-----------testing operations on rows of matrix-----------
 
     def test_swap(self):
         a = self.matrix_INV
@@ -261,6 +327,8 @@ class MatrixTests(unittest.TestCase):
         factor = self.factor
         self.assertRaises(IndexError, add_rows, a, i, j, factor)
 
+#-------------testing computing of determinant of matrix-----
+
     def test_det(self):
         a = self.matrix_INV
         expected = 78
@@ -282,6 +350,8 @@ class MatrixTests(unittest.TestCase):
         a = self.matrix_same_dim_a
         self.assertRaises(ValueError, det, a)
 
+#---------tests inverting matrix----------------
+
     def test_inverse(self):
         a = self.matrix_INV
         expected = [[-15/26, 1/13, 9/26],
@@ -297,6 +367,8 @@ class MatrixTests(unittest.TestCase):
     def test_inverse_not_square(self):
         a = self.matrix_same_dim_a
         self.assertRaises(ValueError, inverse, a)
+
+#---------testing computing of rank----------
 
     def test_rank(self):
         a = self.matrix_INV
