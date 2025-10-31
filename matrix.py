@@ -44,9 +44,7 @@ def swap_rows(a: List[List[float|int]], i: int, j: int) -> List[List[float|int]]
         raise ValueError('Matrix is empty')
     if i >= len(a) or j >= len(a) or i < 0 or j < 0:
         raise IndexError('Indexes out of range')
-    copy = [row[:] for row in a]
-    copy[i], copy[j] = copy[j], copy[i]
-    return copy
+    a[i], a[j] = a[j], a[i]
 
 def scale_rows(a: List[List[float|int]], i: int, factor: float|int) -> List[List[float|int]]:
     """
@@ -59,9 +57,7 @@ def scale_rows(a: List[List[float|int]], i: int, factor: float|int) -> List[List
         raise IndexError('Index out of range')
     if factor == 0:
         raise ValueError('You cannot multiply rows by zero')
-    copy = [row[:] for row in a]
-    copy[i] = [round(x * factor, 10) for x in copy[i]]
-    return copy
+    a[i] = [round(x * factor, 10) for x in a[i]]
 
 def add_rows(a: List[List[float|int]], i: int, j: int, factor: float|int = 1) -> List[List[float|int]]:
     """
@@ -74,9 +70,7 @@ def add_rows(a: List[List[float|int]], i: int, j: int, factor: float|int = 1) ->
         raise IndexError('Index out of range')
     if factor == 0:
         raise ValueError('You cannot multiply rows by zero')
-    copy = [row[:] for row in a]
-    copy[i] = [round(copy[i][k] + copy[j][k] * factor, 10) for k in range(len(copy[i]))]
-    return copy
+    a[i] = [round(a[i][k] + a[j][k] * factor, 10) for k in range(len(a[i]))]
 
 def det(a: List[List[float|int]]) -> float|int:
     if not a or any(len(row) == 0 for row in a):

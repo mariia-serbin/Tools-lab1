@@ -238,13 +238,14 @@ class MatrixTests(unittest.TestCase):
 #-----------testing operations on rows of matrix-----------
 
     def test_swap(self):
-        a = self.matrix_INV
+        a = [row[:] for row in self.matrix_INV]
         i, j = 1, 2
         expected = [[1, 4, 3],
                     [5, 6, 3],
                     [-2, 3, 9]]
         res = matrix.swap_rows(a, i, j)
-        self.assertEqual(res, expected)
+        self.assertIsNone(res)
+        self.assertEqual(a, expected)
 
     def test_swap_empty(self):
         a = [[]]
@@ -256,30 +257,33 @@ class MatrixTests(unittest.TestCase):
         self.assertRaises(IndexError, matrix.swap_rows, a, i, j)
 
     def test_scale(self):
-        a = self.I
+        a = [row[:] for row in self.I]
         factor = self.integer
         i = 1
         expected = [[1, 0, 0],
                     [0, 3, 0],
                     [0, 0, 1]]
         res = matrix.scale_rows(a, i, factor)
-        self.assertMatrixAlmostEqual(res, expected)
+        self.assertIsNone(res)
+        self.assertMatrixAlmostEqual(a, expected)
 
-        a = self.matrix_INV
+        a  = [row[:] for row in self.matrix_INV]
         factor = self.integer
         expected = [[1, 4, 3],
                     [-6, 9, 27],
                     [5, 6, 3]]
         res = matrix.scale_rows(a, i, factor)
-        self.assertMatrixAlmostEqual(res, expected)
+        self.assertIsNone(res)
+        self.assertMatrixAlmostEqual(a, expected)
 
-        a = self.I
+        a = [row[:] for row in self.I]
         factor = self.factor
         expected = [[1, 0, 0],
                     [0, 0.5, 0],
                     [0, 0, 1]]
         res = matrix.scale_rows(a, i, factor)
-        self.assertMatrixAlmostEqual(res, expected)
+        self.assertIsNone(res)
+        self.assertMatrixAlmostEqual(a, expected)
 
     def test_scale_empty(self):
         a = [[]]
@@ -301,21 +305,24 @@ class MatrixTests(unittest.TestCase):
         self.assertRaises(IndexError, matrix.scale_rows, a, i, factor)
 
     def test_add_rows(self):
-        a = self.matrix_INV
+        a = [row[:] for row in self.matrix_INV]
         i, j = 1, 2
         factor = self.integer
         expected = [[1, 4, 3],
                     [13, 21, 18],
                     [5, 6, 3]]
         res = matrix.add_rows(a, i, j, factor)
-        self.assertMatrixAlmostEqual(res, expected)
+        self.assertIsNone(res)
+        self.assertMatrixAlmostEqual(a, expected)
+
+        a = [row[:] for row in self.matrix_INV]
 
         expected = [[1, 4, 3],
                     [3, 9, 12],
                     [5, 6, 3]]
         res = matrix.add_rows(a, i, j)
-        self.assertMatrixAlmostEqual(res, expected)
-
+        self.assertIsNone(res)
+        self.assertMatrixAlmostEqual(a, expected)
     def test_add_rows_empty(self):
         a = [[]]
         i, j = 1, 2
