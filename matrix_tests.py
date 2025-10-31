@@ -107,18 +107,26 @@ class MatrixTests(unittest.TestCase):
     def test_add_empty(self):
         a = [[]]
         b = []
-        self.assertRaises(ValueError, matrix.add, a, b)
+        with self.assertRaises(ValueError) as cm:
+            matrix.add(a, b)
+        self.assertEqual(str(cm.exception), 'Matrices are empty')
 
         a = self.matrix_same_dim_a
         b = []
-        self.assertRaises(ValueError, matrix.add, a, b)
+        with self.assertRaises(ValueError) as cm:
+            matrix.add(a, b)
+        self.assertEqual(str(cm.exception), 'Matrices are empty')
 
         a = [[]]
         b = [[]]
-        self.assertRaises(ValueError, matrix.add, a, b)
+        with self.assertRaises(ValueError) as cm:
+            matrix.add(a, b)
+        self.assertEqual(str(cm.exception), 'Matrices are empty')
 
     def test_add_not_same(self):
-        self.assertRaises(ValueError, matrix.add, self.matrix_same_dim_a, self.matrix_INV)
+        with self.assertRaises(ValueError) as cm:
+            matrix.add(self.matrix_same_dim_a, self.matrix_INV)
+        self.assertEqual(str(cm.exception), 'Matrices should have the same dimensions')
 #---------------testing substraction for matrices---------------
     def test_sub(self):
         a = self.matrix_same_dim_a
@@ -131,18 +139,26 @@ class MatrixTests(unittest.TestCase):
     def test_sub_empty(self):
         a = [[]]
         b = []
-        self.assertRaises(ValueError, matrix.subtract, a, b)
+        with self.assertRaises(ValueError) as cm:
+            matrix.subtract(a, b)
+        self.assertEqual(str(cm.exception), 'Matrices are empty')
 
         a = self.matrix_same_dim_a
         b = []
-        self.assertRaises(ValueError, matrix.subtract, a, b)
+        with self.assertRaises(ValueError) as cm:
+            matrix.subtract(a, b)
+        self.assertEqual(str(cm.exception), 'Matrices are empty')
 
         a = [[]]
         b = [[]]
-        self.assertRaises(ValueError, matrix.subtract, a, b)
+        with self.assertRaises(ValueError) as cm:
+            matrix.subtract(a, b)
+        self.assertEqual(str(cm.exception), 'Matrices are empty')
 
     def test_sub_not_same(self):
-        self.assertRaises(ValueError, matrix.subtract, self.matrix_same_dim_a, self.matrix_INV)
+        with self.assertRaises(ValueError) as cm:
+            matrix.subtract(self.matrix_same_dim_a, self.matrix_INV)
+        self.assertEqual(str(cm.exception), 'Matrices should have the same dimensions')
 
 #--------------testing multiplication be scalar-----------
     def test_mul_scalar(self):
@@ -177,12 +193,15 @@ class MatrixTests(unittest.TestCase):
     def test_mul_scalar_empty(self):
         a = []
         num = self.integer
-        self.assertRaises(ValueError, matrix.multiply_scalar, a, num)
+        with self.assertRaises(ValueError) as cm:
+            matrix.multiply_scalar(a, num)
+        self.assertEqual(str(cm.exception), 'Matrix is empty')
 
         a = [[1], []]
         num = self.factor
-        self.assertRaises(ValueError, matrix.multiply_scalar, a, num)
-
+        with self.assertRaises(ValueError) as cm:
+            matrix.multiply_scalar(a, num)
+        self.assertEqual(str(cm.exception), 'Matrix is empty')
 #--------testing multiplication of 2 matrices---------------
     def test_mul(self):
         a = self.to_mul1
@@ -201,22 +220,30 @@ class MatrixTests(unittest.TestCase):
     def test_mul_empty(self):
         a = [[]]
         b = []
-        self.assertRaises(ValueError, matrix.multiply, a, b)
+        with self.assertRaises(ValueError) as cm:
+            matrix.multiply(a, b)
+        self.assertEqual(str(cm.exception), 'Matrices cannot be empty for multiplying them')
 
         a = self.matrix_INV
         b = []
-        self.assertRaises(ValueError, matrix.multiply, a, b)
+        with self.assertRaises(ValueError) as cm:
+            matrix.multiply(a, b)
+        self.assertEqual(str(cm.exception), 'Matrices cannot be empty for multiplying them')
 
         a = [[12], [0], []]
         b = [[1],
              [3],
              [0]]
-        self.assertRaises(ValueError, matrix.multiply, a, b)
+        with self.assertRaises(ValueError) as cm:
+            matrix.multiply(a, b)
+        self.assertEqual(str(cm.exception), 'Matrices cannot be empty for multiplying them')
 
     def test_mul_not_appropriate(self):
         a = self.to_mul1
         b = self.matrix_same_dim_b
-        self.assertRaises(ValueError, matrix.multiply, a, b)
+        with self.assertRaises(ValueError) as cm:
+            matrix.multiply(a, b)
+        self.assertEqual(str(cm.exception), 'Matrices cannot be multiplied: incompatible sizes')
 
 #-------testing transposing of matrix----------
 
@@ -230,10 +257,14 @@ class MatrixTests(unittest.TestCase):
 
     def test_transpose_empty(self):
         a = [[]]
-        self.assertRaises(ValueError, matrix.transpose, a)
+        with self.assertRaises(ValueError) as cm:
+            matrix.transpose(a)
+        self.assertEqual(str(cm.exception), 'Matrix is empty or has empty rows')
 
         a = [[12], []]
-        self.assertRaises(ValueError, matrix.transpose, a)
+        with self.assertRaises(ValueError) as cm:
+            matrix.transpose(a)
+        self.assertEqual(str(cm.exception), 'Matrix is empty or has empty rows')
 
 #-----------testing operations on rows of matrix-----------
 
@@ -249,12 +280,16 @@ class MatrixTests(unittest.TestCase):
 
     def test_swap_empty(self):
         a = [[]]
-        self.assertRaises(ValueError, matrix.swap_rows, a, 0, 1)
+        with self.assertRaises(ValueError) as cm:
+            matrix.swap_rows(a, 0, 1)
+        self.assertEqual(str(cm.exception), 'Matrix is empty')
 
     def test_swap_not_exists(self):
         i, j = 1, 2
         a = self.matrix_same_dim_a
-        self.assertRaises(IndexError, matrix.swap_rows, a, i, j)
+        with self.assertRaises(IndexError) as cm:
+            matrix.swap_rows(a, i, j)
+        self.assertEqual(str(cm.exception), 'Indexes out of range')
 
     def test_scale(self):
         a = [row[:] for row in self.I]
@@ -287,22 +322,30 @@ class MatrixTests(unittest.TestCase):
 
     def test_scale_empty(self):
         a = [[]]
-        self.assertRaises(ValueError, matrix.scale_rows, a, 0, 1)
+        with self.assertRaises(ValueError) as cm:
+            matrix.scale_rows(a, 0, 1)
+        self.assertEqual(str(cm.exception), 'Matrix is empty')
 
         a = [[12], [0], []]
-        self.assertRaises(ValueError, matrix.scale_rows, a, 1, 1)
+        with self.assertRaises(ValueError) as cm:
+            matrix.scale_rows(a, 0, 1)
+        self.assertEqual(str(cm.exception), 'Matrix is empty')
 
     def test_scale_zero(self):
         a = self.I
         factor = 0
         i = 0
-        self.assertRaises(ValueError, matrix.scale_rows, a, i, factor)
+        with self.assertRaises(ValueError) as cm:
+            matrix.scale_rows(a, i, factor)
+        self.assertEqual(str(cm.exception), 'You cannot multiply rows by zero')
 
     def test_scale_not_exists(self):
         a = self.matrix_INV
         i = 5
         factor = self.integer
-        self.assertRaises(IndexError, matrix.scale_rows, a, i, factor)
+        with self.assertRaises(IndexError) as cm:
+            matrix.scale_rows(a, i, factor)
+        self.assertEqual(str(cm.exception), 'Index out of range')
 
     def test_add_rows(self):
         a = [row[:] for row in self.matrix_INV]
@@ -323,16 +366,28 @@ class MatrixTests(unittest.TestCase):
         res = matrix.add_rows(a, i, j)
         self.assertIsNone(res)
         self.assertMatrixAlmostEqual(a, expected)
+
     def test_add_rows_empty(self):
         a = [[]]
         i, j = 1, 2
-        self.assertRaises(ValueError, matrix.add_rows, a, i, j)
+        with self.assertRaises(ValueError) as cm:
+            matrix.add_rows(a, i, j)
+        self.assertEqual(str(cm.exception), 'Matrix is empty')
+
+    def test_add_rows_zero_factor(self):
+        a = [row[:] for row in self.matrix_INV]
+
+        with self.assertRaises(ValueError) as cm:
+            matrix.add_rows(a, 0, 1, factor=0)
+        self.assertEqual(str(cm.exception), 'You cannot multiply rows by zero')
 
     def test_add_rows_not_exists(self):
         a = self.matrix_INV
         i, j = 2, 5
         factor = self.factor
-        self.assertRaises(IndexError, matrix.add_rows, a, i, j, factor)
+        with self.assertRaises(IndexError) as cm:
+            matrix.add_rows(a, i, j, factor)
+        self.assertEqual(str(cm.exception), 'Index out of range')
 
 #-------------testing computing of determinant of matrix-----
 
@@ -355,7 +410,10 @@ class MatrixTests(unittest.TestCase):
 
     def test_det_not_exists(self):
         a = self.matrix_same_dim_a
-        self.assertRaises(ValueError, matrix.det, a)
+
+        with self.assertRaises(ValueError) as cm:
+            matrix.det(a)
+        self.assertEqual(str(cm.exception), 'Matrix has to be square')
 
 #---------tests inverting matrix----------------
 
@@ -369,11 +427,15 @@ class MatrixTests(unittest.TestCase):
 
     def test_inverse_singular(self):
         a = self.matrix_SINGULAR
-        self.assertRaises(ValueError, matrix.inverse, a)
+        with self.assertRaises(ValueError) as cm:
+            matrix.inverse(a)
+        self.assertEqual(str(cm.exception), 'Matrix is singular and cannot be inverted')
 
     def test_inverse_not_square(self):
         a = self.matrix_same_dim_a
-        self.assertRaises(ValueError, matrix.inverse, a)
+        with self.assertRaises(ValueError) as cm:
+            matrix.inverse(a)
+        self.assertEqual(str(cm.exception), 'Matrix must be square')
 
 #---------testing computing of rank----------
 
@@ -390,7 +452,9 @@ class MatrixTests(unittest.TestCase):
 
     def test_rank_empty(self):
         a = [[]]
-        self.assertRaises(ValueError, matrix.rank, a)
+        with self.assertRaises(ValueError) as cm:
+            matrix.rank(a)
+        self.assertEqual(str(cm.exception), 'Matrix cannot be empty')
 
     def tearDown(self):
         del self.matrix_same_dim_a
