@@ -36,6 +36,10 @@ def transpose(a: List[List[float|int]]) -> List[List[float|int]]:
     return [list(row) for row in zip(*a)]
 
 def swap_rows(a: List[List[float|int]], i: int, j: int) -> List[List[float|int]]:
+    """
+        Swaps two rows (i and j) of a matrix.
+        Note: Row indexing is 0-based (i.e., the first row is at index 0).
+    """
     if not a or any(len(row) == 0 for row in a):
         raise ValueError('Matrix is empty')
     if i >= len(a) or j >= len(a) or i < 0 or j < 0:
@@ -45,6 +49,10 @@ def swap_rows(a: List[List[float|int]], i: int, j: int) -> List[List[float|int]]
     return copy
 
 def scale_rows(a: List[List[float|int]], i: int, factor: float|int) -> List[List[float|int]]:
+    """
+        Multiplies a row by a scalar factor.
+        Note: Row indexing is 0-based (i.e., the i-th row is at index i).
+    """
     if not a or any(len(row) == 0 for row in a):
         raise ValueError('Matrix is empty')
     if i >= len(a) or i < 0:
@@ -56,6 +64,10 @@ def scale_rows(a: List[List[float|int]], i: int, factor: float|int) -> List[List
     return copy
 
 def add_rows(a: List[List[float|int]], i: int, j: int, factor: float|int = 1) -> List[List[float|int]]:
+    """
+        Adds row 'j' (multiplied by 'factor') to row 'i'.
+        Note: Row indexing is 0-based (i.e., the first row is at index 0).
+    """
     if not a or any(len(row) == 0 for row in a):
         raise ValueError('Matrix is empty')
     if i >= len(a) or j >= len(a) or i < 0 or j < 0:
