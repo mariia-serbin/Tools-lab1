@@ -1,4 +1,6 @@
-from typing import *
+from typing import List
+
+EPSILON = 1e-9
 
 def add(a: List[List[float|int]], b: List[List[float|int]]) -> List[List[float|int]]:
     if not a or not b or any(len(row) == 0 for row in a) or any(len(row) == 0 for row in b):
@@ -19,7 +21,7 @@ def subtract(a: List[List[float|int]], b: List[List[float|int]]) -> List[List[fl
 def multiply_scalar(a: List[List[float|int]], num: float|int) -> List[List[float|int]]:
     if not a or any(len(row) == 0 for row in a):
         raise ValueError('Matrix is empty')
-    return [[round(x * num, 10) for x in row] for row in a]
+    return [[x * num for x in row] for row in a]
 
 def multiply(a: List[List[float|int]], b: List[List[float|int]]) -> List[List[float|int]]:
     if not a or not b or any(len(row) == 0 for row in a) or any(len(row) == 0 for row in b):
@@ -55,9 +57,9 @@ def scale_rows(a: List[List[float|int]], i: int, factor: float|int) -> List[List
         raise ValueError('Matrix is empty')
     if i >= len(a) or i < 0:
         raise IndexError('Index out of range')
-    if factor == 0:
+    if abs(factor) < EPSILON:
         raise ValueError('You cannot multiply rows by zero')
-    a[i] = [round(x * factor, 10) for x in a[i]]
+    a[i] = [x * factor for x in a[i]]
 
 def add_rows(a: List[List[float|int]], i: int, j: int, factor: float|int = 1) -> List[List[float|int]]:
     """
@@ -68,9 +70,9 @@ def add_rows(a: List[List[float|int]], i: int, j: int, factor: float|int = 1) ->
         raise ValueError('Matrix is empty')
     if i >= len(a) or j >= len(a) or i < 0 or j < 0:
         raise IndexError('Index out of range')
-    if factor == 0:
+    if abs(factor) < EPSILON:
         raise ValueError('You cannot multiply rows by zero')
-    a[i] = [round(a[i][k] + a[j][k] * factor, 10) for k in range(len(a[i]))]
+    a[i] = [a[i][k] + a[j][k] * factor for k in range(len(a[i]))]
 
 def det(a: List[List[float|int]]) -> float|int:
     if not a or any(len(row) == 0 for row in a):
@@ -83,7 +85,7 @@ def det(a: List[List[float|int]]) -> float|int:
     swaps = 0
     for i in range(n):
         pivot_row = max(range(i, n), key=lambda r: abs(copy[r][i]))
-        if copy[pivot_row][i] == 0:
+        if abs(copy[pivot_row][i]) < EPSILON:
             return 0
         if pivot_row != i:
             copy[i], copy[pivot_row] = copy[pivot_row], copy[i]
@@ -95,7 +97,7 @@ def det(a: List[List[float|int]]) -> float|int:
     for i in range(n):
         det_val *= copy[i][i]
     det_val *= (-1) ** swaps
-    return round(det_val, 10)
+    return det_val
 
 def inverse(a: List[List[float|int]]) -> List[List[float|int]]:
     if not a or any(len(row) == 0 for row in a):
@@ -106,7 +108,7 @@ def inverse(a: List[List[float|int]]) -> List[List[float|int]]:
     copy = [row[:] + [1 if i == j else 0 for j in range(n)] for i, row in enumerate(a)]
     for i in range(n):
         pivot_row = max(range(i, n), key=lambda r: abs(copy[r][i]))
-        if copy[pivot_row][i] == 0:
+        if abs(copy[pivot_row][i]) < EPSILON:
             raise ValueError('Matrix is singular and cannot be inverted')
         if pivot_row != i:
             copy[i], copy[pivot_row] = copy[pivot_row], copy[i]
@@ -115,7 +117,7 @@ def inverse(a: List[List[float|int]]) -> List[List[float|int]]:
         for j in range(n):
             if j != i:
                 factor2 = copy[j][i]
-                copy[j] = [round(copy[j][k] - factor2 * copy[i][k], 10) for k in range(2*n)]
+                copy[j] = [copy[j][k] - factor2 * copy[i][k] for k in range(2*n)]
     return [row[n:] for row in copy]
 
 def rank(a: List[List[float|int]]) -> int:
@@ -127,7 +129,7 @@ def rank(a: List[List[float|int]]) -> int:
     for i in range(min(n, m)):
         pivot_row = -1
         for j in range(i, n):
-            if abs(copy[j][i]) > 1e-10:
+            if abs(copy[j][i]) > EPSILON:
                 pivot_row = j
                 break
         if pivot_row == -1:
@@ -135,6 +137,8 @@ def rank(a: List[List[float|int]]) -> int:
         if pivot_row != i:
             copy[i], copy[pivot_row] = copy[pivot_row], copy[i]
         for j in range(i + 1, n):
+            if abs(copy[i][i]) < EPSILON:
+                continue
             factor = copy[j][i] / copy[i][i]
             copy[j] = [copy[j][k] - factor * copy[i][k] for k in range(m)]
         rank_val += 1
