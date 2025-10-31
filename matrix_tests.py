@@ -1,4 +1,4 @@
-from matrix import *
+import matrix
 import unittest
 
 class MatrixTests(unittest.TestCase):
@@ -99,7 +99,7 @@ class MatrixTests(unittest.TestCase):
 #-------------testing add function----------------
 
     def test_add(self):
-        res = add(self.matrix_same_dim_a, self.matrix_same_dim_b)
+        res = matrix.add(self.matrix_same_dim_a, self.matrix_same_dim_b)
         expected = [[6, 12, 7],
                     [2, 10, 14]]
         self.assertEqual(res, expected)
@@ -107,42 +107,42 @@ class MatrixTests(unittest.TestCase):
     def test_add_empty(self):
         a = [[]]
         b = []
-        self.assertRaises(ValueError, add, a, b)
+        self.assertRaises(ValueError, matrix.add, a, b)
 
         a = self.matrix_same_dim_a
         b = []
-        self.assertRaises(ValueError, add, a, b)
+        self.assertRaises(ValueError, matrix.add, a, b)
 
         a = [[]]
         b = [[]]
-        self.assertRaises(ValueError, add, a, b)
+        self.assertRaises(ValueError, matrix.add, a, b)
 
     def test_add_not_same(self):
-        self.assertRaises(ValueError, add, self.matrix_same_dim_a, self.matrix_INV)
+        self.assertRaises(ValueError, matrix.add, self.matrix_same_dim_a, self.matrix_INV)
 #---------------testing substraction for matrices---------------
     def test_sub(self):
         a = self.matrix_same_dim_a
         b = self.matrix_same_dim_b
         expected = [[-4, 6, 5],
                     [2, 6, 6]]
-        res = subtract(a, b)
+        res = matrix.subtract(a, b)
         self.assertEqual(res, expected)
 
     def test_sub_empty(self):
         a = [[]]
         b = []
-        self.assertRaises(ValueError, subtract, a, b)
+        self.assertRaises(ValueError, matrix.subtract, a, b)
 
         a = self.matrix_same_dim_a
         b = []
-        self.assertRaises(ValueError, subtract, a, b)
+        self.assertRaises(ValueError, matrix.subtract, a, b)
 
         a = [[]]
         b = [[]]
-        self.assertRaises(ValueError, subtract, a, b)
+        self.assertRaises(ValueError, matrix.subtract, a, b)
 
     def test_sub_not_same(self):
-        self.assertRaises(ValueError, subtract, self.matrix_same_dim_a, self.matrix_INV)
+        self.assertRaises(ValueError, matrix.subtract, self.matrix_same_dim_a, self.matrix_INV)
 
 #--------------testing multiplication be scalar-----------
     def test_mul_scalar(self):
@@ -151,37 +151,37 @@ class MatrixTests(unittest.TestCase):
         expected = [[3, 6, 9],
                     [9, 18, 27],
                     [12, 15, 6]]
-        res = multiply_scalar(a, num)
+        res = matrix.multiply_scalar(a, num)
         self.assertMatrixAlmostEqual(res, expected)
 
         num = self.factor
         expected = [[0.5, 1, 1.5],
                     [1.5, 3, 4.5],
                     [2, 2.5, 1]]
-        res = multiply_scalar(a, num)
+        res = matrix.multiply_scalar(a, num)
         self.assertMatrixAlmostEqual(res, expected)
 
     def test_mul_scalar_zero(self):
         num = 0
         a = self.matrix_SINGULAR
         expected = self.Z
-        res = multiply_scalar(a, num)
+        res = matrix.multiply_scalar(a, num)
         self.assertMatrixAlmostEqual(res, expected)
 
         a = self.Z
         num = self.integer
         expected = self.Z
-        res = multiply_scalar(a, num)
+        res = matrix.multiply_scalar(a, num)
         self.assertMatrixAlmostEqual(res, expected)
 
     def test_mul_scalar_empty(self):
         a = []
         num = self.integer
-        self.assertRaises(ValueError, multiply_scalar, a, num)
+        self.assertRaises(ValueError, matrix.multiply_scalar, a, num)
 
         a = [[1], []]
         num = self.factor
-        self.assertRaises(ValueError, multiply_scalar, a, num)
+        self.assertRaises(ValueError, matrix.multiply_scalar, a, num)
 
 #--------testing multiplication of 2 matrices---------------
     def test_mul(self):
@@ -189,34 +189,34 @@ class MatrixTests(unittest.TestCase):
         b = self.to_mul2
         expected = [[14, 18, 10, 7],
                     [32, 24, 10, 39]]
-        res = multiply(a, b)
+        res = matrix.multiply(a, b)
         self.assertEqual(res, expected)
 
         a = self.matrix_INV
         b = self.I
         expected = self.matrix_INV
-        res = multiply(a, b)
+        res = matrix.multiply(a, b)
         self.assertEqual(res, expected)
 
     def test_mul_empty(self):
         a = [[]]
         b = []
-        self.assertRaises(ValueError, multiply, a, b)
+        self.assertRaises(ValueError, matrix.multiply, a, b)
 
         a = self.matrix_INV
         b = []
-        self.assertRaises(ValueError, multiply, a, b)
+        self.assertRaises(ValueError, matrix.multiply, a, b)
 
         a = [[12], [0], []]
         b = [[1],
              [3],
              [0]]
-        self.assertRaises(ValueError, multiply, a, b)
+        self.assertRaises(ValueError, matrix.multiply, a, b)
 
     def test_mul_not_appropriate(self):
         a = self.to_mul1
         b = self.matrix_same_dim_b
-        self.assertRaises(ValueError, multiply, a, b)
+        self.assertRaises(ValueError, matrix.multiply, a, b)
 
 #-------testing transposing of matrix----------
 
@@ -225,15 +225,15 @@ class MatrixTests(unittest.TestCase):
         expected = [[1, 2],
                     [9, 8],
                     [6, 10]]
-        res = transpose(a)
+        res = matrix.transpose(a)
         self.assertEqual(res, expected)
 
     def test_transpose_empty(self):
         a = [[]]
-        self.assertRaises(ValueError, transpose, a)
+        self.assertRaises(ValueError, matrix.transpose, a)
 
         a = [[12], []]
-        self.assertRaises(ValueError, transpose, a)
+        self.assertRaises(ValueError, matrix.transpose, a)
 
 #-----------testing operations on rows of matrix-----------
 
@@ -243,17 +243,17 @@ class MatrixTests(unittest.TestCase):
         expected = [[1, 4, 3],
                     [5, 6, 3],
                     [-2, 3, 9]]
-        res = swap_rows(a, i, j)
+        res = matrix.swap_rows(a, i, j)
         self.assertEqual(res, expected)
 
     def test_swap_empty(self):
         a = [[]]
-        self.assertRaises(ValueError, swap_rows, a, 0, 1)
+        self.assertRaises(ValueError, matrix.swap_rows, a, 0, 1)
 
     def test_swap_not_exists(self):
         i, j = 1, 2
         a = self.matrix_same_dim_a
-        self.assertRaises(IndexError, swap_rows, a, i, j)
+        self.assertRaises(IndexError, matrix.swap_rows, a, i, j)
 
     def test_scale(self):
         a = self.I
@@ -262,7 +262,7 @@ class MatrixTests(unittest.TestCase):
         expected = [[1, 0, 0],
                     [0, 3, 0],
                     [0, 0, 1]]
-        res = scale_rows(a, i, factor)
+        res = matrix.scale_rows(a, i, factor)
         self.assertMatrixAlmostEqual(res, expected)
 
         a = self.matrix_INV
@@ -270,7 +270,7 @@ class MatrixTests(unittest.TestCase):
         expected = [[1, 4, 3],
                     [-6, 9, 27],
                     [5, 6, 3]]
-        res = scale_rows(a, i, factor)
+        res = matrix.scale_rows(a, i, factor)
         self.assertMatrixAlmostEqual(res, expected)
 
         a = self.I
@@ -278,27 +278,27 @@ class MatrixTests(unittest.TestCase):
         expected = [[1, 0, 0],
                     [0, 0.5, 0],
                     [0, 0, 1]]
-        res = scale_rows(a, i, factor)
+        res = matrix.scale_rows(a, i, factor)
         self.assertMatrixAlmostEqual(res, expected)
 
     def test_scale_empty(self):
         a = [[]]
-        self.assertRaises(ValueError, scale_rows, a, 0, 1)
+        self.assertRaises(ValueError, matrix.scale_rows, a, 0, 1)
 
         a = [[12], [0], []]
-        self.assertRaises(ValueError, scale_rows, a, 1, 1)
+        self.assertRaises(ValueError, matrix.scale_rows, a, 1, 1)
 
     def test_scale_zero(self):
         a = self.I
         factor = 0
         i = 0
-        self.assertRaises(ValueError, scale_rows, a, i, factor)
+        self.assertRaises(ValueError, matrix.scale_rows, a, i, factor)
 
     def test_scale_not_exists(self):
         a = self.matrix_INV
         i = 5
         factor = self.integer
-        self.assertRaises(IndexError, scale_rows, a, i, factor)
+        self.assertRaises(IndexError, matrix.scale_rows, a, i, factor)
 
     def test_add_rows(self):
         a = self.matrix_INV
@@ -307,48 +307,48 @@ class MatrixTests(unittest.TestCase):
         expected = [[1, 4, 3],
                     [13, 21, 18],
                     [5, 6, 3]]
-        res = add_rows(a, i, j, factor)
+        res = matrix.add_rows(a, i, j, factor)
         self.assertMatrixAlmostEqual(res, expected)
 
         expected = [[1, 4, 3],
                     [3, 9, 12],
                     [5, 6, 3]]
-        res = add_rows(a, i, j)
+        res = matrix.add_rows(a, i, j)
         self.assertMatrixAlmostEqual(res, expected)
 
     def test_add_rows_empty(self):
         a = [[]]
         i, j = 1, 2
-        self.assertRaises(ValueError, add_rows, a, i, j)
+        self.assertRaises(ValueError, matrix.add_rows, a, i, j)
 
     def test_add_rows_not_exists(self):
         a = self.matrix_INV
         i, j = 2, 5
         factor = self.factor
-        self.assertRaises(IndexError, add_rows, a, i, j, factor)
+        self.assertRaises(IndexError, matrix.add_rows, a, i, j, factor)
 
 #-------------testing computing of determinant of matrix-----
 
     def test_det(self):
         a = self.matrix_INV
         expected = 78
-        res = det(a)
+        res = matrix.det(a)
         self.assertAlmostEqual(res, expected)
 
         a = self.I
         expected = 1
-        res = det(a)
+        res = matrix.det(a)
         self.assertAlmostEqual(res, expected)
 
     def test_det_zero(self):
         a = self.matrix_SINGULAR
         expected = 0
-        res = det(a)
+        res = matrix.det(a)
         self.assertAlmostEqual(res, expected)
 
     def test_det_not_exists(self):
         a = self.matrix_same_dim_a
-        self.assertRaises(ValueError, det, a)
+        self.assertRaises(ValueError, matrix.det, a)
 
 #---------tests inverting matrix----------------
 
@@ -357,33 +357,33 @@ class MatrixTests(unittest.TestCase):
         expected = [[-15/26, 1/13, 9/26],
                     [17/26, -2/13, -5/26],
                     [-9/26, 7/39, 11/78]]
-        res = inverse(a)
+        res = matrix.inverse(a)
         self.assertMatrixAlmostEqual(res, expected)
 
     def test_inverse_singular(self):
         a = self.matrix_SINGULAR
-        self.assertRaises(ValueError, inverse, a)
+        self.assertRaises(ValueError, matrix.inverse, a)
 
     def test_inverse_not_square(self):
         a = self.matrix_same_dim_a
-        self.assertRaises(ValueError, inverse, a)
+        self.assertRaises(ValueError, matrix.inverse, a)
 
 #---------testing computing of rank----------
 
     def test_rank(self):
         a = self.matrix_INV
         expected = 3
-        res = rank(a)
+        res = matrix.rank(a)
         self.assertEqual(res, expected)
 
         a = self.matrix_SINGULAR
         expected = 2
-        res = rank(a)
+        res = matrix.rank(a)
         self.assertEqual(res, expected)
 
     def test_rank_empty(self):
         a = [[]]
-        self.assertRaises(ValueError, rank, a)
+        self.assertRaises(ValueError, matrix.rank, a)
 
     def tearDown(self):
         del self.matrix_same_dim_a
