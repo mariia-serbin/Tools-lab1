@@ -1,3 +1,15 @@
+"""
+@file matrix.py
+@brief Matrix operations module.
+@details Contains functions for basic and advanced matrix operations, including addition, subtraction,
+         scalar multiplication, matrix multiplication, transposition, row operations (swap, scale, add),
+         determinant, inverse, and rank calculation. Provides proper exception handling for invalid inputs
+         such as empty matrices, non-square matrices, singular matrices, and out-of-range row indices.
+@author
+Maria Serbin
+@date
+11.11.2025
+"""
 from typing import List
 
 EPSILON = 1e-9
