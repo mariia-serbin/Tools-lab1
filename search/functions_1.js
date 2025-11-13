@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['det_0',['det',['../namespacematrix.html#af7f71ff3aea44a9bb45a91d88909b69c',1,'matrix']]]
+  ['setup_0',['setUp',['../classmatrix__tests_1_1MatrixTests.html#ab1be8078a320d3737d00621e011fa8f6',1,'matrix_tests::MatrixTests']]]
 ];

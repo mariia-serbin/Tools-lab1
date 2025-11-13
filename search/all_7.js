@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['rank_0',['rank',['../namespacematrix.html#a8b057b10d34bf9f7e7864fd925abe7d6',1,'matrix']]],
-  ['readme_2emd_1',['README.md',['../README_8md.html',1,'']]]
+  ['setup_0',['setUp',['../classmatrix__tests_1_1MatrixTests.html#ab1be8078a320d3737d00621e011fa8f6',1,'matrix_tests::MatrixTests']]]
 ];
