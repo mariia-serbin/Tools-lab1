@@ -21,6 +21,9 @@ jobs:
       - name: Generate documentation
         run: doxygen Doxyfile
 
+      - name: List generated files
+        run: ls -R
+
       - name: Create .nojekyll file
         run: touch ./docs/html/.nojekyll
 
