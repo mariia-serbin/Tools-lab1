@@ -1,4 +1,4 @@
-"""
+"""!
 @file test_matrix_operations.py
 @brief Unit tests for matrix operations module.
 @details Contains unit tests for all functions in the matrix module,
@@ -17,7 +17,7 @@ import matrix
 import unittest
 
 class MatrixTests(unittest.TestCase):
-    """
+    """!
     @brief Class for testing all matrix functions from matrix.py.
 
     This class contains tests for addition, subtraction, scalar multiplication, matrix multiplication,
@@ -27,7 +27,7 @@ class MatrixTests(unittest.TestCase):
     """
 
     def setUp(self):
-        """
+        """!
         @brief Initializes matrices and constants for testing.
 
         Initializes:
@@ -69,7 +69,7 @@ class MatrixTests(unittest.TestCase):
         self.integer = 3
 
     def assertMatrixAlmostEqual(self, res, expected, places=7):
-        """
+        """!
         @brief Helper method to assert that two matrices with floating-point numbers are almost equal.
 
         @param res The resulting matrix obtained from a function under test.
@@ -92,7 +92,7 @@ class MatrixTests(unittest.TestCase):
 #-------------testing add function----------------
 
     def test_add(self):
-        """
+        """!
         @brief Tests addition of two matrices with identical dimensions.
 
         @details Checks that the add() function correctly sums corresponding elements
@@ -106,7 +106,7 @@ class MatrixTests(unittest.TestCase):
         self.assertEqual(res, expected)
 
     def test_add_empty(self):
-        """
+        """!
         @brief Tests handling of empty matrices in the add() function.
 
         @details Verifies that ValueError is raised when one or both input matrices are empty.
@@ -133,7 +133,7 @@ class MatrixTests(unittest.TestCase):
         self.assertEqual(str(cm.exception), 'Matrices are empty')
 
     def test_add_not_same(self):
-        """
+        """!
         @brief Tests add() with matrices of different dimensions.
 
         @details Ensures that the function raises ValueError when matrix dimensions differ.
@@ -146,7 +146,7 @@ class MatrixTests(unittest.TestCase):
         self.assertEqual(str(cm.exception), 'Matrices should have the same dimensions')
 #---------------testing substraction for matrices---------------
     def test_sub(self):
-        """
+        """!
         @brief Tests subtraction of two matrices with identical dimensions.
 
         @details Checks that the subtract() function correctly computes the element-wise
@@ -162,7 +162,7 @@ class MatrixTests(unittest.TestCase):
         self.assertEqual(res, expected)
 
     def test_sub_empty(self):
-        """
+        """!
         @brief Tests handling of empty matrices in the subtract() function.
 
         @details Verifies that ValueError is raised when one or both input matrices are empty.
@@ -189,7 +189,7 @@ class MatrixTests(unittest.TestCase):
         self.assertEqual(str(cm.exception), 'Matrices are empty')
 
     def test_sub_not_same(self):
-        """
+        """!
         @brief Tests subtract() with matrices of different dimensions.
 
         @details Ensures that the function raises ValueError when matrix dimensions differ.
@@ -203,7 +203,7 @@ class MatrixTests(unittest.TestCase):
 
 #--------------testing multiplication by scalar-----------
     def test_mul_scalar(self):
-        """
+        """!
         @brief Tests multiplication of a matrix by a scalar.
 
         @details Verifies that multiply_scalar() correctly multiplies all elements of a matrix
@@ -227,7 +227,7 @@ class MatrixTests(unittest.TestCase):
         self.assertMatrixAlmostEqual(res, expected)
 
     def test_mul_scalar_zero(self):
-        """
+        """!
         @brief Tests multiplication of a matrix by zero.
 
         @details Ensures that multiplying any matrix by zero returns a zero matrix.
@@ -247,7 +247,7 @@ class MatrixTests(unittest.TestCase):
         self.assertMatrixAlmostEqual(res, expected)
 
     def test_mul_scalar_empty(self):
-        """
+        """!
         @brief Tests handling of empty matrices in multiply_scalar().
 
         @details Verifies that ValueError is raised when the input matrix is empty
@@ -269,7 +269,7 @@ class MatrixTests(unittest.TestCase):
         self.assertEqual(str(cm.exception), 'Matrix is empty')
 #--------testing multiplication of 2 matrices---------------
     def test_mul(self):
-        """
+        """!
         @brief Tests multiplication of two matrices with compatible dimensions.
 
         @details Verifies that multiply() correctly computes the matrix product
@@ -292,7 +292,7 @@ class MatrixTests(unittest.TestCase):
         self.assertEqual(res, expected)
 
     def test_mul_empty(self):
-        """
+        """!
         @brief Tests handling of empty matrices in multiply().
 
         @details Ensures that ValueError is raised when one or both input matrices
@@ -322,7 +322,7 @@ class MatrixTests(unittest.TestCase):
         self.assertEqual(str(cm.exception), 'Matrices cannot be empty for multiplying them')
 
     def test_mul_not_appropriate(self):
-        """
+        """!
         @brief Tests multiply() with incompatible matrices.
 
         @details Verifies that ValueError is raised when the number of columns
@@ -340,7 +340,7 @@ class MatrixTests(unittest.TestCase):
 #-------testing transposing of matrix----------
 
     def test_transpose(self):
-        """
+        """!
         @brief Tests transposition of a matrix.
 
         @details Verifies that transpose() correctly flips rows and columns
@@ -356,7 +356,7 @@ class MatrixTests(unittest.TestCase):
         self.assertEqual(res, expected)
 
     def test_transpose_empty(self):
-        """
+        """!
         @brief Tests handling of empty matrices in transpose().
 
         @details Ensures that ValueError is raised when the input matrix is empty
@@ -378,7 +378,7 @@ class MatrixTests(unittest.TestCase):
 #-----------testing operations on rows of matrix-----------
 
     def test_swap(self):
-        """
+        """!
         @brief Tests swapping of two rows in a matrix.
 
         @details Verifies that swap_rows() correctly swaps the specified rows in a non-empty matrix.
@@ -395,7 +395,7 @@ class MatrixTests(unittest.TestCase):
         self.assertEqual(a, expected)
 
     def test_swap_empty(self):
-        """
+        """!
         @brief Tests swapping rows in an empty matrix.
 
         @details Ensures that ValueError is raised when the input matrix is empty.
@@ -409,7 +409,7 @@ class MatrixTests(unittest.TestCase):
         self.assertEqual(str(cm.exception), 'Matrix is empty')
 
     def test_swap_not_exists(self):
-        """
+        """!
         @brief Tests swapping rows with invalid indices.
 
         @details Verifies that IndexError is raised when the specified row indices
@@ -425,7 +425,7 @@ class MatrixTests(unittest.TestCase):
         self.assertEqual(str(cm.exception), 'Indexes out of range')
 
     def test_scale(self):
-        """
+        """!
         @brief Tests scaling a row of a matrix by a scalar factor.
 
         @details Verifies that scale_rows() correctly multiplies all elements of
@@ -462,7 +462,7 @@ class MatrixTests(unittest.TestCase):
         self.assertMatrixAlmostEqual(a, expected)
 
     def test_scale_empty(self):
-        """
+        """!
         @brief Tests scaling a row in an empty matrix.
 
         @details Ensures that ValueError is raised when the matrix is empty or contains empty rows.
@@ -481,7 +481,7 @@ class MatrixTests(unittest.TestCase):
         self.assertEqual(str(cm.exception), 'Matrix is empty')
 
     def test_scale_zero(self):
-        """
+        """!
         @brief Tests scaling a row by zero.
 
         @details Verifies that ValueError is raised when attempting to multiply a row by zero.
@@ -497,7 +497,7 @@ class MatrixTests(unittest.TestCase):
         self.assertEqual(str(cm.exception), 'You cannot multiply rows by zero')
 
     def test_scale_not_exists(self):
-        """
+        """!
         @brief Tests scaling a non-existent row.
 
         @details Verifies that IndexError is raised when the specified row index
@@ -514,7 +514,7 @@ class MatrixTests(unittest.TestCase):
         self.assertEqual(str(cm.exception), 'Index out of range')
 
     def test_add_rows(self):
-        """
+        """!
         @brief Tests adding one row multiplied by a factor to another row.
 
         @details Verifies that add_rows() correctly adds the scaled source row to the target row,
@@ -542,7 +542,7 @@ class MatrixTests(unittest.TestCase):
         self.assertMatrixAlmostEqual(a, expected)
 
     def test_add_rows_empty(self):
-        """
+        """!
         @brief Tests adding rows in an empty matrix.
 
         @details Ensures that ValueError is raised when the matrix is empty.
@@ -557,7 +557,7 @@ class MatrixTests(unittest.TestCase):
         self.assertEqual(str(cm.exception), 'Matrix is empty')
 
     def test_add_rows_zero_factor(self):
-        """
+        """!
         @brief Tests adding rows with a zero multiplication factor.
 
         @details Verifies that ValueError is raised when the factor is zero.
@@ -572,7 +572,7 @@ class MatrixTests(unittest.TestCase):
         self.assertEqual(str(cm.exception), 'You cannot multiply rows by zero')
 
     def test_add_rows_not_exists(self):
-        """
+        """!
         @brief Tests adding rows with invalid indices.
 
         @details Verifies that IndexError is raised when one of the specified row indices
@@ -591,7 +591,7 @@ class MatrixTests(unittest.TestCase):
 #-------------testing computing of determinant of matrix-----
 
     def test_det(self):
-        """
+        """!
         @brief Tests calculation of the determinant of a square matrix.
 
         @details Verifies that det() correctly computes the determinant
@@ -610,7 +610,7 @@ class MatrixTests(unittest.TestCase):
         self.assertAlmostEqual(res, expected)
 
     def test_det_zero(self):
-        """
+        """!
         @brief Tests calculation of the determinant for a singular matrix.
 
         @details Ensures that det() correctly returns zero for singular matrices.
@@ -623,7 +623,7 @@ class MatrixTests(unittest.TestCase):
         self.assertAlmostEqual(res, expected)
 
     def test_det_not_exists(self):
-        """
+        """!
         @brief Tests determinant calculation for a non-square matrix.
 
         @details Verifies that ValueError is raised when attempting to compute
@@ -641,7 +641,7 @@ class MatrixTests(unittest.TestCase):
 #---------tests inverting matrix----------------
 
     def test_inverse(self):
-        """
+        """!
         @brief Tests calculation of the inverse of a square matrix.
 
         @details Verifies that inverse() correctly computes the inverse of an invertible matrix.
@@ -656,7 +656,7 @@ class MatrixTests(unittest.TestCase):
         self.assertMatrixAlmostEqual(res, expected)
 
     def test_inverse_singular(self):
-        """
+        """!
         @brief Tests inversion of a singular matrix.
 
         @details Ensures that ValueError is raised when attempting to invert a singular matrix.
@@ -670,7 +670,7 @@ class MatrixTests(unittest.TestCase):
         self.assertEqual(str(cm.exception), 'Matrix is singular and cannot be inverted')
 
     def test_inverse_not_square(self):
-        """
+        """!
         @brief Tests inversion of a non-square matrix.
 
         @details Verifies that ValueError is raised when attempting to invert a non-square matrix.
@@ -686,7 +686,7 @@ class MatrixTests(unittest.TestCase):
 #---------testing computing of rank----------
 
     def test_rank(self):
-        """
+        """!
         @brief Tests calculation of the rank of a matrix.
 
         @details Verifies that rank() correctly computes the rank for both
@@ -705,7 +705,7 @@ class MatrixTests(unittest.TestCase):
         self.assertEqual(res, expected)
 
     def test_rank_empty(self):
-        """
+        """!
         @brief Tests rank calculation for an empty matrix.
 
         @details Ensures that ValueError is raised when the input matrix is empty.
@@ -719,7 +719,7 @@ class MatrixTests(unittest.TestCase):
         self.assertEqual(str(cm.exception), 'Matrix cannot be empty')
 
     def tearDown(self):
-        """
+        """!
         @brief Cleans up resources after each test.
 
         @details Deletes all matrix and scalar attributes used in the tests to

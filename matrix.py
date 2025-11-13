@@ -1,4 +1,4 @@
-"""
+"""!
 @file matrix.py
 @brief Matrix operations module.
 @details Contains functions for basic and advanced matrix operations, including addition, subtraction,
@@ -15,7 +15,7 @@ from typing import List
 EPSILON = 1e-9
 
 def add(a: List[List[float|int]], b: List[List[float|int]]) -> List[List[float|int]]:
-    """
+    """!
     @brief Performs addition of two matrices with the same dimensions.
 
     @param a The first matrix to add, of size m×n. Elements can be integers or floating-point numbers,
@@ -37,7 +37,7 @@ def add(a: List[List[float|int]], b: List[List[float|int]]) -> List[List[float|i
     return [[a[i][j] + b[i][j] for j in range(m)] for i in range(n)]
 
 def subtract(a: List[List[float|int]], b: List[List[float|int]]) -> List[List[float|int]]:
-    """
+    """!
     @brief Performs subtraction of two matrices of the same dimensions.
 
     @param a The first matrix (minuend), of size m×n. Elements can be integers or floating-point numbers,
@@ -59,7 +59,7 @@ def subtract(a: List[List[float|int]], b: List[List[float|int]]) -> List[List[fl
     return [[a[i][j] - b[i][j] for j in range(m)] for i in range(n)]
 
 def multiply_scalar(a: List[List[float|int]], num: float|int) -> List[List[float|int]]:
-    """
+    """!
     @brief Multiplies every element of a matrix by a scalar value.
 
     @param a The matrix to multiply, of size m×n. Each element can be an integer or floating-point number,
@@ -80,7 +80,7 @@ def multiply_scalar(a: List[List[float|int]], num: float|int) -> List[List[float
     return [[x * num for x in row] for row in a]
 
 def multiply(a: List[List[float|int]], b: List[List[float|int]]) -> List[List[float|int]]:
-    """
+    """!
     @brief Performs matrix multiplication of two matrices (A * B).
 
     @param a The first matrix (A) of size n×m. Each element can be an integer or floating-point number,
@@ -108,7 +108,7 @@ def multiply(a: List[List[float|int]], b: List[List[float|int]]) -> List[List[fl
     return [[sum(a[i][k] * b[k][j] for k in range(m_a)) for j in range(m_b)] for i in range(n_a)]
 
 def transpose(a: List[List[float|int]]) -> List[List[float|int]]:
-    """
+    """!
     @brief Returns the transposed matrix of the input matrix (rows become columns and columns become rows).
 
     @param a The matrix to transpose, of size m×n. Each element can be an integer or floating-point number,
@@ -125,7 +125,7 @@ def transpose(a: List[List[float|int]]) -> List[List[float|int]]:
     return [list(row) for row in zip(*a)]
 
 def swap_rows(a: List[List[float|int]], i: int, j: int) -> List[List[float|int]]:
-    """
+    """!
     @brief Swaps two rows of a matrix in place.
 
     @param a The matrix to modify, of size m×n. Each element can be an integer or floating-point number,
@@ -146,7 +146,7 @@ def swap_rows(a: List[List[float|int]], i: int, j: int) -> List[List[float|int]]
     a[i], a[j] = a[j], a[i]
 
 def scale_rows(a: List[List[float|int]], i: int, factor: float|int) -> List[List[float|int]]:
-    """
+    """!
     @brief Multiplies a single row of a matrix by a scalar factor in place.
 
     @param a The matrix to modify, of size m×n. Each element can be an integer or floating-point number,
@@ -170,7 +170,7 @@ def scale_rows(a: List[List[float|int]], i: int, factor: float|int) -> List[List
     a[i] = [x * factor for x in a[i]]
 
 def add_rows(a: List[List[float|int]], i: int, j: int, factor: float|int = 1) -> List[List[float|int]]:
-    """
+    """!
     @brief Adds a multiple of one row to another row in a matrix (row_i += row_j * factor).
 
     @param a The matrix to modify, of size m×n. Each element can be an integer or floating-point number,
@@ -194,7 +194,7 @@ def add_rows(a: List[List[float|int]], i: int, j: int, factor: float|int = 1) ->
     a[i] = [a[i][k] + a[j][k] * factor for k in range(len(a[i]))]
 
 def det(a: List[List[float|int]]) -> float|int:
-    """
+    """!
     @brief Computes the determinant of a square matrix.
 
     @param a The square matrix of size n×n. Each element can be an integer or floating-point number,
@@ -232,7 +232,7 @@ def det(a: List[List[float|int]]) -> float|int:
     return det_val
 
 def inverse(a: List[List[float|int]]) -> List[List[float|int]]:
-    """
+    """!
     @brief Computes the inverse of a square matrix using the Gauss-Jordan elimination method.
 
     @param a The square matrix of size n×n. Each element can be an integer or floating-point number,
@@ -274,7 +274,7 @@ def inverse(a: List[List[float|int]]) -> List[List[float|int]]:
     return [row[n:] for row in copy]
 
 def rank(a: List[List[float|int]]) -> int:
-    """
+    """!
     @brief Computes the rank of a matrix using Gaussian elimination.
 
     @param a The matrix of size n×m. Each element can be an integer or floating-point number,
