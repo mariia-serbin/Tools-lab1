@@ -1,5 +1,5 @@
 """!
-@file test_matrix_operations.py
+@file test_matrix.py
 @brief Unit tests for matrix operations module.
 @details Contains unit tests for all functions in the matrix module,
          including addition, subtraction, multiplication, scalar multiplication,
