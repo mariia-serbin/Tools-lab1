@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['matrix_0',['matrix',['../namespacematrix.html',1,'']]],
+  ['matrix_0',['matrix',['../classmatrix_1_1Matrix.html',1,'matrix.Matrix'],['../namespacematrix.html',1,'matrix']]],
   ['matrix_2epy_1',['matrix.py',['../matrix_8py.html',1,'']]],
   ['matrix_5finv_2',['matrix_INV',['../classmatrix__tests_1_1MatrixTests.html#a6095037076441acab862bab1b62b4471',1,'matrix_tests::MatrixTests']]],
   ['matrix_5fsame_5fdim_5fa_3',['matrix_same_dim_a',['../classmatrix__tests_1_1MatrixTests.html#ae9f85ded02cb2bff279e8cc14560e45b',1,'matrix_tests::MatrixTests']]],
