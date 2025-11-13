@@ -27,8 +27,6 @@ class Matrix:
              an instance of the Matrix class — simply call the methods directly with matrices as input arguments.
     """
     @staticmethod
-    def add(a: List[List[float|int]], b: List[List[float|int]]) -> List[List[float|int]]:
-
     ##@brief Performs addition of two matrices with the same dimensions.
 
     #@param a The first matrix to add, of size m×n. Elements can be integers or floating-point numbers,
@@ -41,6 +39,8 @@ class Matrix:
     #         An empty matrix is defined as having one or more empty rows, or no rows at all.
     # @example
     # add([[1,2],[3,4]], [[5,6],[7,8]]) -> [[6,8],[10,12]]
+    def add(a: List[List[float|int]], b: List[List[float|int]]) -> List[List[float|int]]:
+
         if not a or not b or any(len(row) == 0 for row in a) or any(len(row) == 0 for row in b):
             raise ValueError('Matrices are empty')
         if len(a) != len(b) or len(a[0]) != len(b[0]):
