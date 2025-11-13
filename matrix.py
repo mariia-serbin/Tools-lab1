@@ -14,10 +14,10 @@ from typing import List
 
 EPSILON = 1e-9
 
-class Matrix:
+class Matrix: 
     """!
     @brief Program implementation of matrix operations.
-
+    
     @details This class provides the program implementation of both basic and advanced matrix operations,
              including addition, subtraction, scalar and matrix multiplication, as well as fundamental row operations
              (swapping, scaling, and row addition). It also supports more advanced computations such as determining
@@ -28,20 +28,19 @@ class Matrix:
     """
     @staticmethod
     def add(a: List[List[float|int]], b: List[List[float|int]]) -> List[List[float|int]]:
-        """!
-    @brief Performs addition of two matrices with the same dimensions.
 
-    @param a The first matrix to add, of size m×n. Elements can be integers or floating-point numbers,
-             including zero and negative values.
-    @param b The second matrix to add, of size m×n. Elements can be integers or floating-point numbers,
-             including zero and negative values.
-    @return A new matrix of the same dimensions as the input matrices, where each element
-            C[i][j] = A[i][j] + B[i][j] (the sum of the corresponding elements of the input matrices).
-    @throws ValueError If the matrices have different dimensions or if one or both matrices are empty.
-            An empty matrix is defined as having one or more empty rows, or no rows at all.
-    @example
-    add([[1,2],[3,4]], [[5,6],[7,8]]) -> [[6,8],[10,12]]
-    """
+    ##@brief Performs addition of two matrices with the same dimensions.
+
+    #@param a The first matrix to add, of size m×n. Elements can be integers or floating-point numbers,
+             #including zero and negative values.
+    # @param b The second matrix to add, of size m×n. Elements can be integers or floating-point numbers,
+    #          including zero and negative values.
+    # @return A new matrix of the same dimensions as the input matrices, where each element
+    #         C[i][j] = A[i][j] + B[i][j] (the sum of the corresponding elements of the input matrices).
+    # @throws ValueError If the matrices have different dimensions or if one or both matrices are empty.
+    #         An empty matrix is defined as having one or more empty rows, or no rows at all.
+    # @example
+    # add([[1,2],[3,4]], [[5,6],[7,8]]) -> [[6,8],[10,12]]
         if not a or not b or any(len(row) == 0 for row in a) or any(len(row) == 0 for row in b):
             raise ValueError('Matrices are empty')
         if len(a) != len(b) or len(a[0]) != len(b[0]):
