@@ -34,8 +34,5 @@ var searchData=
   ['test_5fswap_5fnot_5fexists_31',['test_swap_not_exists',['../classmatrix__tests_1_1MatrixTests.html#a0729c72581a11feb4a8551f61ea6b416',1,'matrix_tests::MatrixTests']]],
   ['test_5ftranspose_32',['test_transpose',['../classmatrix__tests_1_1MatrixTests.html#ae7862e4a979718b8473debec5ebd8a80',1,'matrix_tests::MatrixTests']]],
   ['test_5ftranspose_5fempty_33',['test_transpose_empty',['../classmatrix__tests_1_1MatrixTests.html#ad71fb7d80ced56c22067f8f5377c598c',1,'matrix_tests::MatrixTests']]],
-  ['to_5fmul1_34',['to_mul1',['../classmatrix__tests_1_1MatrixTests.html#a9acc1df4112e5a2641df6e9ee5c61833',1,'matrix_tests::MatrixTests']]],
-  ['to_5fmul2_35',['to_mul2',['../classmatrix__tests_1_1MatrixTests.html#a632d4fe5e3f8bf178fedf91e67a40897',1,'matrix_tests::MatrixTests']]],
-  ['tools_20lab1_36',['Tools-lab1',['../md_README.html',1,'']]],
-  ['transpose_37',['transpose',['../classmatrix_1_1Matrix.html#a11a3e65079a88abfc1f7d07283f07ff4',1,'matrix::Matrix']]]
+  ['transpose_34',['transpose',['../classmatrix_1_1Matrix.html#a11a3e65079a88abfc1f7d07283f07ff4',1,'matrix::Matrix']]]
 ];
