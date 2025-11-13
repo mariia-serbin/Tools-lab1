@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['epsilon_0',['EPSILON',['../namespacematrix.html#a3c7c948277a1407cd53e20b148e11357',1,'matrix']]]
+  ['factor_0',['factor',['../classmatrix__tests_1_1MatrixTests.html#a5da8caaf13850c7dc52281b7b081ac3b',1,'matrix_tests::MatrixTests']]]
 ];

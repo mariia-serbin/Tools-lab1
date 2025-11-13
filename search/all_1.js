@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['det_0',['det',['../classmatrix_1_1Matrix.html#a4d2e50ba55d7a039c4a1a6a98944f6bc',1,'matrix::Matrix']]]
+  ['epsilon_0',['EPSILON',['../namespacematrix.html#a3c7c948277a1407cd53e20b148e11357',1,'matrix']]]
 ];
