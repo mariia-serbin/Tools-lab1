@@ -28,16 +28,16 @@ class Matrix:
     """
     @staticmethod
     ##@brief Performs addition of two matrices with the same dimensions.
-    #@param a The first matrix to add, of size m×n. Elements can be integers or floating-point numbers,
-             #including zero and negative values.
-    # @param b The second matrix to add, of size m×n. Elements can be integers or floating-point numbers,
-    #          including zero and negative values.
-    # @return A new matrix of the same dimensions as the input matrices, where each element
-    #         C[i][j] = A[i][j] + B[i][j] (the sum of the corresponding elements of the input matrices).
-    # @throws ValueError If the matrices have different dimensions or if one or both matrices are empty.
-    #         An empty matrix is defined as having one or more empty rows, or no rows at all.
-    # @example
-    # add([[1,2],[3,4]], [[5,6],[7,8]]) -> [[6,8],[10,12]]
+    ##@param a The first matrix to add, of size m×n. Elements can be integers or floating-point numbers,
+             ##including zero and negative values.
+    ## @param b The second matrix to add, of size m×n. Elements can be integers or floating-point numbers,
+    ##          including zero and negative values.
+    ## @return A new matrix of the same dimensions as the input matrices, where each element
+    ##         C[i][j] = A[i][j] + B[i][j] (the sum of the corresponding elements of the input matrices).
+    ## @throws ValueError If the matrices have different dimensions or if one or both matrices are empty.
+    ##         An empty matrix is defined as having one or more empty rows, or no rows at all.
+    ## @example
+    ## add([[1,2],[3,4]], [[5,6],[7,8]]) -> [[6,8],[10,12]]
     def add(a: List[List[float|int]], b: List[List[float|int]]) -> List[List[float|int]]:
 
         if not a or not b or any(len(row) == 0 for row in a) or any(len(row) == 0 for row in b):
