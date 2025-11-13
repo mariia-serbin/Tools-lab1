@@ -14,8 +14,21 @@ from typing import List
 
 EPSILON = 1e-9
 
-def add(a: List[List[float|int]], b: List[List[float|int]]) -> List[List[float|int]]:
+class Matrix:
     """!
+    @brief Program implementation of matrix operations.
+
+    @details This class provides the program implementation of both basic and advanced matrix operations,
+             including addition, subtraction, scalar and matrix multiplication, as well as fundamental row operations
+             (swapping, scaling, and row addition). It also supports more advanced computations such as determining
+             the rank, determinant, and inverse of a matrix.
+
+             Each method in this class is defined as a static method, meaning you do not need to create
+             an instance of the Matrix class — simply call the methods directly with matrices as input arguments.
+    """
+    @staticmethod
+    def add(a: List[List[float|int]], b: List[List[float|int]]) -> List[List[float|int]]:
+        """!
     @brief Performs addition of two matrices with the same dimensions.
 
     @param a The first matrix to add, of size m×n. Elements can be integers or floating-point numbers,
@@ -29,15 +42,17 @@ def add(a: List[List[float|int]], b: List[List[float|int]]) -> List[List[float|i
     @example
     add([[1,2],[3,4]], [[5,6],[7,8]]) -> [[6,8],[10,12]]
     """
-    if not a or not b or any(len(row) == 0 for row in a) or any(len(row) == 0 for row in b):
-        raise ValueError('Matrices are empty')
-    if len(a) != len(b) or len(a[0]) != len(b[0]):
-        raise ValueError('Matrices should have the same dimensions')
-    n, m = len(a), len(a[0])
-    return [[a[i][j] + b[i][j] for j in range(m)] for i in range(n)]
+        if not a or not b or any(len(row) == 0 for row in a) or any(len(row) == 0 for row in b):
+            raise ValueError('Matrices are empty')
+        if len(a) != len(b) or len(a[0]) != len(b[0]):
+            raise ValueError('Matrices should have the same dimensions')
+        n, m = len(a), len(a[0])
 
-def subtract(a: List[List[float|int]], b: List[List[float|int]]) -> List[List[float|int]]:
-    """!
+        return [[a[i][j] + b[i][j] for j in range(m)] for i in range(n)]
+
+    @staticmethod
+    def subtract(a: List[List[float|int]], b: List[List[float|int]]) -> List[List[float|int]]:
+        """!
     @brief Performs subtraction of two matrices of the same dimensions.
 
     @param a The first matrix (minuend), of size m×n. Elements can be integers or floating-point numbers,
@@ -51,15 +66,16 @@ def subtract(a: List[List[float|int]], b: List[List[float|int]]) -> List[List[fl
     @example
     subtract([[5,6],[7,8]], [[1,2],[3,4]]) -> [[4,4],[4,4]]
     """
-    if not a or not b or any(len(row) == 0 for row in a) or any(len(row) == 0 for row in b):
-        raise ValueError('Matrices are empty')
-    if len(a) != len(b) or len(a[0]) != len(b[0]):
-        raise ValueError('Matrices should have the same dimensions')
-    n, m = len(a), len(a[0])
-    return [[a[i][j] - b[i][j] for j in range(m)] for i in range(n)]
+        if not a or not b or any(len(row) == 0 for row in a) or any(len(row) == 0 for row in b):
+            raise ValueError('Matrices are empty')
+        if len(a) != len(b) or len(a[0]) != len(b[0]):
+            raise ValueError('Matrices should have the same dimensions')
+        n, m = len(a), len(a[0])
+        return [[a[i][j] - b[i][j] for j in range(m)] for i in range(n)]
 
-def multiply_scalar(a: List[List[float|int]], num: float|int) -> List[List[float|int]]:
-    """!
+    @staticmethod
+    def multiply_scalar(a: List[List[float|int]], num: float|int) -> List[List[float|int]]:
+        """!
     @brief Multiplies every element of a matrix by a scalar value.
 
     @param a The matrix to multiply, of size m×n. Each element can be an integer or floating-point number,
@@ -75,12 +91,13 @@ def multiply_scalar(a: List[List[float|int]], num: float|int) -> List[List[float
     multiply_scalar([[1.5,2.5],[3.0,4.0]], 0.5) -> [[0.75,1.25],[1.5,2.0]]
     multiply_scalar([[1,2],[3,4]], -1) -> [[-1,-2],[-3,-4]]
     """
-    if not a or any(len(row) == 0 for row in a):
-        raise ValueError('Matrix is empty')
-    return [[x * num for x in row] for row in a]
+        if not a or any(len(row) == 0 for row in a):
+            raise ValueError('Matrix is empty')
+        return [[x * num for x in row] for row in a]
 
-def multiply(a: List[List[float|int]], b: List[List[float|int]]) -> List[List[float|int]]:
-    """!
+    @staticmethod
+    def multiply(a: List[List[float|int]], b: List[List[float|int]]) -> List[List[float|int]]:
+        """!
     @brief Performs matrix multiplication of two matrices (A * B).
 
     @param a The first matrix (A) of size n×m. Each element can be an integer or floating-point number,
@@ -99,16 +116,17 @@ def multiply(a: List[List[float|int]], b: List[List[float|int]]) -> List[List[fl
     multiply([[1,2],[3,4]], [[5,6],[7,8]]) -> [[19,22],[43,50]]
     multiply([[1,0,2],[0,1,3]], [[1,2],[3,4],[5,6]]) -> [[11,16],[18,22]]
     """
-    if not a or not b or any(len(row) == 0 for row in a) or any(len(row) == 0 for row in b):
-        raise ValueError('Matrices cannot be empty for multiplying them')
-    n_a, m_a = len(a), len(a[0])
-    n_b, m_b = len(b), len(b[0])
-    if m_a != n_b:
-        raise ValueError('Matrices cannot be multiplied: incompatible sizes')
-    return [[sum(a[i][k] * b[k][j] for k in range(m_a)) for j in range(m_b)] for i in range(n_a)]
+        if not a or not b or any(len(row) == 0 for row in a) or any(len(row) == 0 for row in b):
+            raise ValueError('Matrices cannot be empty for multiplying them')
+        n_a, m_a = len(a), len(a[0])
+        n_b, m_b = len(b), len(b[0])
+        if m_a != n_b:
+            raise ValueError('Matrices cannot be multiplied: incompatible sizes')
+        return [[sum(a[i][k] * b[k][j] for k in range(m_a)) for j in range(m_b)] for i in range(n_a)]
 
-def transpose(a: List[List[float|int]]) -> List[List[float|int]]:
-    """!
+    @staticmethod
+    def transpose(a: List[List[float|int]]) -> List[List[float|int]]:
+        """!
     @brief Returns the transposed matrix of the input matrix (rows become columns and columns become rows).
 
     @param a The matrix to transpose, of size m×n. Each element can be an integer or floating-point number,
@@ -120,12 +138,13 @@ def transpose(a: List[List[float|int]]) -> List[List[float|int]]:
     transpose([[1,2],[3,4]]) -> [[1,3],[2,4]]
     transpose([[1,2,3],[4,5,6]]) -> [[1,4],[2,5],[3,6]]
     """
-    if not a or any(len(row) == 0 for row in a):
-        raise ValueError('Matrix is empty or has empty rows')
-    return [list(row) for row in zip(*a)]
+        if not a or any(len(row) == 0 for row in a):
+            raise ValueError('Matrix is empty or has empty rows')
+        return [list(row) for row in zip(*a)]
 
-def swap_rows(a: List[List[float|int]], i: int, j: int) -> List[List[float|int]]:
-    """!
+    @staticmethod
+    def swap_rows(a: List[List[float|int]], i: int, j: int) -> List[List[float|int]]:
+        """!
     @brief Swaps two rows of a matrix in place.
 
     @param a The matrix to modify, of size m×n. Each element can be an integer or floating-point number,
@@ -139,14 +158,15 @@ def swap_rows(a: List[List[float|int]], i: int, j: int) -> List[List[float|int]]
     swap_rows([[1,2],[3,4]], 0, 1) -> [[3,4],[1,2]]
     swap_rows([[1,2,3],[4,5,6],[7,8,9]], 0, 2) -> [[7,8,9],[4,5,6],[1,2,3]]
     """
-    if not a or any(len(row) == 0 for row in a):
-        raise ValueError('Matrix is empty')
-    if i >= len(a) or j >= len(a) or i < 0 or j < 0:
-        raise IndexError('Indexes out of range')
-    a[i], a[j] = a[j], a[i]
+        if not a or any(len(row) == 0 for row in a):
+            raise ValueError('Matrix is empty')
+        if i >= len(a) or j >= len(a) or i < 0 or j < 0:
+            raise IndexError('Indexes out of range')
+        a[i], a[j] = a[j], a[i]
 
-def scale_rows(a: List[List[float|int]], i: int, factor: float|int) -> List[List[float|int]]:
-    """!
+    @staticmethod
+    def scale_rows(a: List[List[float|int]], i: int, factor: float|int) -> List[List[float|int]]:
+        """!
     @brief Multiplies a single row of a matrix by a scalar factor in place.
 
     @param a The matrix to modify, of size m×n. Each element can be an integer or floating-point number,
@@ -161,16 +181,17 @@ def scale_rows(a: List[List[float|int]], i: int, factor: float|int) -> List[List
     scale_rows([[1,2],[3,4]], 0, 2) -> [[2,4],[3,4]]
     scale_rows([[1,2,3],[4,5,6]], 1, -1) -> [[1,2,3],[-4,-5,-6]]
     """
-    if not a or any(len(row) == 0 for row in a):
-        raise ValueError('Matrix is empty')
-    if i >= len(a) or i < 0:
-        raise IndexError('Index out of range')
-    if abs(factor) < EPSILON:
-        raise ValueError('You cannot multiply rows by zero')
-    a[i] = [x * factor for x in a[i]]
+        if not a or any(len(row) == 0 for row in a):
+            raise ValueError('Matrix is empty')
+        if i >= len(a) or i < 0:
+            raise IndexError('Index out of range')
+        if abs(factor) < EPSILON:
+            raise ValueError('You cannot multiply rows by zero')
+        a[i] = [x * factor for x in a[i]]
 
-def add_rows(a: List[List[float|int]], i: int, j: int, factor: float|int = 1) -> List[List[float|int]]:
-    """!
+    @staticmethod
+    def add_rows(a: List[List[float|int]], i: int, j: int, factor: float|int = 1) -> List[List[float|int]]:
+        """!
     @brief Adds a multiple of one row to another row in a matrix (row_i += row_j * factor).
 
     @param a The matrix to modify, of size m×n. Each element can be an integer or floating-point number,
@@ -185,16 +206,17 @@ def add_rows(a: List[List[float|int]], i: int, j: int, factor: float|int = 1) ->
     add_rows([[1,2],[3,4]], 0, 1) -> [[4,6],[3,4]]  # factor defaults to 1
     add_rows([[1,2],[3,4]], 0, 1, 2) -> [[7,10],[3,4]]  # factor = 2
     """
-    if not a or any(len(row) == 0 for row in a):
-        raise ValueError('Matrix is empty')
-    if i >= len(a) or j >= len(a) or i < 0 or j < 0:
-        raise IndexError('Index out of range')
-    if abs(factor) < EPSILON:
-        raise ValueError('You cannot multiply rows by zero')
-    a[i] = [a[i][k] + a[j][k] * factor for k in range(len(a[i]))]
+        if not a or any(len(row) == 0 for row in a):
+            raise ValueError('Matrix is empty')
+        if i >= len(a) or j >= len(a) or i < 0 or j < 0:
+            raise IndexError('Index out of range')
+        if abs(factor) < EPSILON:
+            raise ValueError('You cannot multiply rows by zero')
+        a[i] = [a[i][k] + a[j][k] * factor for k in range(len(a[i]))]
 
-def det(a: List[List[float|int]]) -> float|int:
-    """!
+    @staticmethod
+    def det(a: List[List[float|int]]) -> float|int:
+        """!
     @brief Computes the determinant of a square matrix.
 
     @param a The square matrix of size n×n. Each element can be an integer or floating-point number,
@@ -207,32 +229,33 @@ def det(a: List[List[float|int]]) -> float|int:
     det([[1,2],[3,4]]) -> -2
     det([[2,0,1],[1,1,0],[3,2,1]]) -> 3
     """
-    if not a or any(len(row) == 0 for row in a):
-        raise ValueError('Matrix is empty')
-    n = len(a)
-    if any(len(row) != n for row in a):
-        raise ValueError('Matrix has to be square')
-    copy = [row[:] for row in a]
-    det_val = 1
-    swaps = 0
-    for i in range(n):
-        pivot_row = max(range(i, n), key=lambda r: abs(copy[r][i]))
-        if abs(copy[pivot_row][i]) < EPSILON:
-            return 0
-        if pivot_row != i:
-            copy[i], copy[pivot_row] = copy[pivot_row], copy[i]
-            swaps += 1
-        for j in range(i + 1, n):
-            factor = copy[j][i] / copy[i][i]
-            for k in range(i, n):
-                copy[j][k] -= factor * copy[i][k]
-    for i in range(n):
-        det_val *= copy[i][i]
-    det_val *= (-1) ** swaps
-    return det_val
+        if not a or any(len(row) == 0 for row in a):
+            raise ValueError('Matrix is empty')
+        n = len(a)
+        if any(len(row) != n for row in a):
+            raise ValueError('Matrix has to be square')
+        copy = [row[:] for row in a]
+        det_val = 1
+        swaps = 0
+        for i in range(n):
+            pivot_row = max(range(i, n), key=lambda r: abs(copy[r][i]))
+            if abs(copy[pivot_row][i]) < EPSILON:
+                return 0
+            if pivot_row != i:
+                copy[i], copy[pivot_row] = copy[pivot_row], copy[i]
+                swaps += 1
+            for j in range(i + 1, n):
+                factor = copy[j][i] / copy[i][i]
+                for k in range(i, n):
+                    copy[j][k] -= factor * copy[i][k]
+        for i in range(n):
+            det_val *= copy[i][i]
+        det_val *= (-1) ** swaps
+        return det_val
 
-def inverse(a: List[List[float|int]]) -> List[List[float|int]]:
-    """!
+    @staticmethod
+    def inverse(a: List[List[float|int]]) -> List[List[float|int]]:
+        """!
     @brief Computes the inverse of a square matrix using the Gauss-Jordan elimination method.
 
     @param a The square matrix of size n×n. Each element can be an integer or floating-point number,
@@ -253,28 +276,29 @@ def inverse(a: List[List[float|int]]) -> List[List[float|int]]:
     inverse([[1,2],[3,4]]) -> [[-2.0, 1.0],[1.5, -0.5]]
     inverse([[2,0,1],[1,1,0],[3,2,1]]) -> [[-2.0, 1.0, 1.0],[1.0, 0.0, 0.0],[1.0, -1.0, 0.0]]
     """
-    if not a or any(len(row) == 0 for row in a):
-        raise ValueError('Matrix is empty')
-    n = len(a)
-    if any(len(row) != n for row in a):
-        raise ValueError('Matrix must be square')
-    copy = [row[:] + [1 if i == j else 0 for j in range(n)] for i, row in enumerate(a)]
-    for i in range(n):
-        pivot_row = max(range(i, n), key=lambda r: abs(copy[r][i]))
-        if abs(copy[pivot_row][i]) < EPSILON:
-            raise ValueError('Matrix is singular and cannot be inverted')
-        if pivot_row != i:
-            copy[i], copy[pivot_row] = copy[pivot_row], copy[i]
-        factor = copy[i][i]
-        copy[i] = [x / factor for x in copy[i]]
-        for j in range(n):
-            if j != i:
-                factor2 = copy[j][i]
-                copy[j] = [copy[j][k] - factor2 * copy[i][k] for k in range(2*n)]
-    return [row[n:] for row in copy]
+        if not a or any(len(row) == 0 for row in a):
+            raise ValueError('Matrix is empty')
+        n = len(a)
+        if any(len(row) != n for row in a):
+            raise ValueError('Matrix must be square')
+        copy = [row[:] + [1 if i == j else 0 for j in range(n)] for i, row in enumerate(a)]
+        for i in range(n):
+            pivot_row = max(range(i, n), key=lambda r: abs(copy[r][i]))
+            if abs(copy[pivot_row][i]) < EPSILON:
+                raise ValueError('Matrix is singular and cannot be inverted')
+            if pivot_row != i:
+                copy[i], copy[pivot_row] = copy[pivot_row], copy[i]
+            factor = copy[i][i]
+            copy[i] = [x / factor for x in copy[i]]
+            for j in range(n):
+                if j != i:
+                    factor2 = copy[j][i]
+                    copy[j] = [copy[j][k] - factor2 * copy[i][k] for k in range(2*n)]
+        return [row[n:] for row in copy]
 
-def rank(a: List[List[float|int]]) -> int:
-    """!
+    @staticmethod
+    def rank(a: List[List[float|int]]) -> int:
+        """!
     @brief Computes the rank of a matrix using Gaussian elimination.
 
     @param a The matrix of size n×m. Each element can be an integer or floating-point number,
@@ -292,25 +316,25 @@ def rank(a: List[List[float|int]]) -> int:
     rank([[1,2,3],[2,4,6],[3,6,9]]) -> 1
     rank([[1,0,0],[0,1,0],[0,0,1]]) -> 3
     """
-    if not a or any(len(row) == 0 for row in a):
-        raise ValueError('Matrix cannot be empty')
-    n, m = len(a), len(a[0])
-    copy = [row[:] for row in a]
-    rank_val = 0
-    for i in range(min(n, m)):
-        pivot_row = -1
-        for j in range(i, n):
-            if abs(copy[j][i]) > EPSILON:
-                pivot_row = j
-                break
-        if pivot_row == -1:
-            continue
-        if pivot_row != i:
-            copy[i], copy[pivot_row] = copy[pivot_row], copy[i]
-        for j in range(i + 1, n):
-            if abs(copy[i][i]) < EPSILON:
+        if not a or any(len(row) == 0 for row in a):
+            raise ValueError('Matrix cannot be empty')
+        n, m = len(a), len(a[0])
+        copy = [row[:] for row in a]
+        rank_val = 0
+        for i in range(min(n, m)):
+            pivot_row = -1
+            for j in range(i, n):
+                if abs(copy[j][i]) > EPSILON:
+                    pivot_row = j
+                    break
+            if pivot_row == -1:
                 continue
-            factor = copy[j][i] / copy[i][i]
-            copy[j] = [copy[j][k] - factor * copy[i][k] for k in range(m)]
-        rank_val += 1
-    return rank_val
+            if pivot_row != i:
+                copy[i], copy[pivot_row] = copy[pivot_row], copy[i]
+            for j in range(i + 1, n):
+                if abs(copy[i][i]) < EPSILON:
+                    continue
+                factor = copy[j][i] / copy[i][i]
+                copy[j] = [copy[j][k] - factor * copy[i][k] for k in range(m)]
+            rank_val += 1
+        return rank_val

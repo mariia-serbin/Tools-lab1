@@ -12,6 +12,7 @@ MARKDOWN_STRICT        = YES
 MARKDOWN_ID_STYLE      = DOXYGEN
 EXTRACT_ALL            = YES
 EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC        = YES
 EXTRACT_PACKAGE        = NO
 EXTRACT_LOCAL_METHODS  = NO
 INPUT                  = matrix.py matrix_tests.py README.md
