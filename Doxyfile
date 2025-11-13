@@ -1005,7 +1005,7 @@ WARN_LOGFILE           =
 # spaces. See also FILE_PATTERNS and EXTENSION_MAPPING
 # Note: If this tag is empty the current directory is searched.
 
-INPUT                  =,
+INPUT                  = matrix.py matrix_tests.py README.md
 
 # This tag can be used to specify the character encoding of the source files
 # that Doxygen parses. Internally Doxygen uses the UTF-8 encoding. Doxygen uses
@@ -3014,3 +3014,4 @@ MSCGEN_TOOL            =
 # command).
 
 MSCFILE_DIRS           =
+USE_MDNODE_AS_MAINPAGE = README.md
