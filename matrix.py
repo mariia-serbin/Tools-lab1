@@ -28,7 +28,6 @@ class Matrix:
     """
     @staticmethod
     ##@brief Performs addition of two matrices with the same dimensions.
-
     #@param a The first matrix to add, of size m×n. Elements can be integers or floating-point numbers,
              #including zero and negative values.
     # @param b The second matrix to add, of size m×n. Elements can be integers or floating-point numbers,
