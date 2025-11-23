@@ -1,4 +1,14 @@
 var examples =
 [
-    [ "/home/runner/work/Tools-lab1/Tools-lab1/matrix.py", "_2home_2runner_2work_2Tools-lab1_2Tools-lab1_2matrix_8py-example.html", null ]
+    [ "(List[List[float|int]] a, List[List[float|int]] b)", "example_add_8py-example.html", null ],
+    [ "(List[List[float|int]] a, List[List[float|int]] b)", "example_sub_8py-example.html", null ],
+    [ "(List[List[float|int]] a, float|int num)", "example_mul_scalar_8py-example.html", null ],
+    [ "(List[List[float|int]] a, List[List[float|int]] b)", "example_mul_8py-example.html", null ],
+    [ "(List[List[float|int]] a)", "example_transpose_8py-example.html", null ],
+    [ "(List[List[float|int]] a, int i, int j)", "example_swap_rows_8py-example.html", null ],
+    [ "(List[List[float|int]] a, int i, float|int factor)", "example_scale_8py-example.html", null ],
+    [ "(List[List[float|int]] a, int i, int j, float|int factor=1)", "example_add_rows_8py-example.html", null ],
+    [ "(List[List[float|int]] a)", "example_det_8py-example.html", null ],
+    [ "(List[List[float|int]] a)", "example_inverse_8py-example.html", null ],
+    [ "(List[List[float|int]] a)", "example_rank_8py-example.html", null ]
 ];
