@@ -93,22 +93,22 @@ $(document).ready(function(){initNavTree('_2home_2runner_2work_2Tools-lab1_2Tool
   <div class="headertitle"><div class="title">/home/runner/work/Tools-lab1/Tools-lab1/matrix.py</div></div>
 </div><!--header-->
 <div class="contents">
-<p>Performs addition of two matrices with the same dimensions.</p>
-<p>Performs addition of two matrices with the same dimensions.</p><dl class="params"><dt>Parameters</dt><dd>
+<p>Performs subtraction of two matrices of the same dimensions.</p>
+<p>Performs subtraction of two matrices of the same dimensions.</p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">a</td><td>The first matrix to add, of size m×n. Elements can be integers or floating-point numbers, including zero and negative values. </td></tr>
-    <tr><td class="paramname">b</td><td>The second matrix to add, of size m×n. Elements can be integers or floating-point numbers, including zero and negative values. </td></tr>
+    <tr><td class="paramname">a</td><td>The first matrix (minuend), of size m×n. Elements can be integers or floating-point numbers, including zero and negative values. </td></tr>
+    <tr><td class="paramname">b</td><td>The second matrix (subtrahend), of size m×n. Elements can be integers or floating-point numbers, including zero and negative values. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A new matrix of the same dimensions as the input matrices, where each element C[i][j] = A[i][j] + B[i][j] (the sum of the corresponding elements of the input matrices). </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A new matrix of the same dimensions where each element C[i][j] = A[i][j] - B[i][j] (the difference of the corresponding elements of the input matrices). </dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname">ValueError</td><td>If the matrices have different dimensions or if one or both matrices are empty. An empty matrix is defined as having one or more empty rows, or no rows at all.</td></tr>
   </table>
   </dd>
 </dl>
-<p>add([[1,2],[3,4]], [[5,6],[7,8]]) -&gt; [[6,8],[10,12]]</p>
+<p>subtract([[5,6],[7,8]], [[1,2],[3,4]]) -&gt; [[4,4],[4,4]]</p>
 <div class="fragment"><div class="line"><span class="lineno">    1</span><span class="stringliteral">&quot;&quot;&quot;!</span></div>
 <div class="line"><span class="lineno">    2</span><span class="stringliteral">@file matrix.py</span></div>
 <div class="line"><span class="lineno">    3</span><span class="stringliteral">@brief Matrix operations module.</span></div>
@@ -139,6 +139,7 @@ $(document).ready(function(){initNavTree('_2home_2runner_2work_2Tools-lab1_2Tool
 <div class="line"><span class="lineno">   28</span><span class="stringliteral">    &quot;&quot;&quot;</span></div>
 <div class="line"><span class="lineno">   29</span>    <span class="preprocessor">@staticmethod</span></div>
 <div class="line"><span class="lineno">   30</span>    </div>
+<div class="line"><span class="lineno">   40</span> </div>
 <div class="line"><span class="lineno">   41</span>    <span class="keyword">def </span>add(a: List[List[float|int]], b: List[List[float|int]]) -&gt; List[List[float|int]]:</div>
 <div class="line"><span class="lineno">   42</span> </div>
 <div class="line"><span class="lineno">   43</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> a <span class="keywordflow">or</span> <span class="keywordflow">not</span> b <span class="keywordflow">or</span> any(len(row) == 0 <span class="keywordflow">for</span> row <span class="keywordflow">in</span> a) <span class="keywordflow">or</span> any(len(row) == 0 <span class="keywordflow">for</span> row <span class="keywordflow">in</span> b):</div>
