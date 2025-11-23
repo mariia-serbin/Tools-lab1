@@ -77,7 +77,21 @@ class Matrix:
             C[i][j] = A[i][j] - B[i][j] (the difference of the corresponding elements of the input matrices).
     @throws ValueError If the matrices have different dimensions or if one or both matrices are empty.
             An empty matrix is defined as having one or more empty rows, or no rows at all.
-    @example example_sub.py
+    @code
+    from matrix import Matrix
+
+        a = [[1, 2],
+            [3, 4]]
+        b = [[5, 6],
+            [7, 8]]
+
+        try:
+            res = Matrix.subtract(a, b)
+            for row in res:
+                print(row)
+        except ValueError as e:
+            print(f"Error: {e}")
+    @endcode
     """
         if not a or not b or any(len(row) == 0 for row in a) or any(len(row) == 0 for row in b):
             raise ValueError('Matrices are empty')
@@ -99,7 +113,19 @@ class Matrix:
             C[i][j] = A[i][j] * num.
     @throws ValueError If the matrix is empty (has zero rows or one or more empty rows).
             An empty matrix is defined as having one or more empty rows, or no rows at all.
-    @example example_mul_scalar.py
+    @code
+    from matrix import Matrix
+
+        a = [[1, 2],
+            [3, 4]]
+        scalar = 5
+        try:
+            res = Matrix.multiply_scalar(a, scalar)
+            for row in res:
+                print(row)
+        except ValueError as e:
+            print(f"Error: {e}")
+    @endcode
     """
         if not a or any(len(row) == 0 for row in a):
             raise ValueError('Matrix is empty')
@@ -122,7 +148,21 @@ class Matrix:
     @throws ValueError If the matrices have incompatible dimensions for multiplication,
             or if one or both matrices are empty.
             An empty matrix is defined as having empty rows or one or more empty rows.
-    @example example_mul.py
+    @code
+    from matrix import Matrix
+
+        a = [[1, 2],
+            [3, 4]]
+        b = [[5, 6],
+            [7, 8]]
+
+        try:
+            res = Matrix.multiply(a, b)
+            for row in res:
+        print(row)
+except ValueError as e:
+    print(f"Error: {e}")
+    @endcode
     """
         if not a or not b or any(len(row) == 0 for row in a) or any(len(row) == 0 for row in b):
             raise ValueError('Matrices cannot be empty for multiplying them')
@@ -142,7 +182,21 @@ class Matrix:
     @return A new matrix of size n×m where each element
             C[i][j] = A[j][i], effectively swapping rows and columns.
     @throws ValueError If the matrix is empty. An empty matrix is defined as having empty rows or one or more empty rows.
-    @example example_transpose.py
+    @code
+    from matrix import Matrix
+
+        a = [[0, 1],
+            [2, 3],
+            [4, 5],
+            [6, 7]]
+
+        try:
+            res = Matrix.transpose(a)
+            for row in res:
+                print(row)
+        except ValueError as e:
+            print(f"Error: {e}")
+    @endcode
     """
         if not a or any(len(row) == 0 for row in a):
             raise ValueError('Matrix is empty or has empty rows')
@@ -160,7 +214,21 @@ class Matrix:
     @throws ValueError If the matrix is empty. An empty matrix is defined as having empty
             rows or one or more empty rows.
     @throws IndexError If either row index is out of range (less than 0 or greater than the number of rows minus one).
-    @example example_swap_rows.py
+    @code
+    from matrix import Matrix
+
+        a = [[1, 2, 3],
+            [4, 5, 6],
+            [7, 8, 9]]
+        i, j = 0, 2
+
+        try:
+            Matrix.swap_rows(a, i, j)
+            for row in a:
+                print(row)
+        except (ValueError, IndexError) as e:
+            print(f"Error: {e}")
+    @endcode
     """
         if not a or any(len(row) == 0 for row in a):
             raise ValueError('Matrix is empty')
@@ -181,7 +249,22 @@ class Matrix:
     @throws ValueError If the matrix is empty, or if factor is zero.
             An empty matrix is defined as having empty rows or one or more empty rows.
     @throws IndexError If the row index is out of range (less than 0 or greater than the number of rows minus one).
-    @example example_scale.py
+    @code
+    from matrix import Matrix
+
+        a = [[1, 2, 3],
+            [4, 5, 17],
+            [18, 6, 20]]
+        factor = 0.5
+        i = 1
+
+        try:
+            Matrix.scale_rows(a, i, factor)
+            for row in a:
+                print(row)
+        except ValueError as e:
+            print(f"Error: {e}")
+    @endcode
     """
         if not a or any(len(row) == 0 for row in a):
             raise ValueError('Matrix is empty')
@@ -204,7 +287,21 @@ class Matrix:
     @throws ValueError If the matrix is empty, or if factor is zero.
             An empty matrix is defined as having empty rows or one or more empty rows.
     @throws IndexError If either row index is out of range (less than 0 or greater than the number of rows minus one).
-    @example example_add_rows.py
+    @code
+    from matrix import Matrix
+
+        a = [[1, 2, 3],
+            [4, 5, 6],
+            [7, 8, 9]]
+        i, j, factor = 0, 1, 3
+
+        try:
+            Matrix.add_rows(a, i, j, factor)
+            for row in a:
+                print(row)
+        except (ValueError, IndexError) as e:
+            print(f"Error: {e}")
+    @endcode
     """
         if not a or any(len(row) == 0 for row in a):
             raise ValueError('Matrix is empty')
@@ -225,7 +322,19 @@ class Matrix:
     @throws ValueError If the matrix is empty or not square.
             An empty matrix is defined as having empty rows or one or more empty rows.
             A non-square matrix is defined as having a number of rows not equal to the number of columns.
-    @example example_det.py
+    @code
+    from matrix import Matrix
+
+        a = [[1, 2, 3],
+            [4, 5, 6],
+            [7, 8, 9]]
+
+        try:
+            det = Matrix.det(a)
+            print(det)
+        except ValueError as e:
+            print(f"Error: {e}")
+    @endcode
     """
         if not a or any(len(row) == 0 for row in a):
             raise ValueError('Matrix is empty')
@@ -270,7 +379,19 @@ class Matrix:
              3. The pivot row is normalized so that the pivot element becomes 1.
              4. Other rows are updated to make all elements in the pivot column zero.
              5. After processing all rows, the right half of the augmented matrix becomes the inverse.
-    @example example_inverse.py
+    @code
+    from matrix import Matrix
+
+        a = [[1, 0, 0],
+            [0, 1, 0],
+            [0, 0, 1]]
+        try:
+            inverted = Matrix.inverse(a)
+            for row in inverted:
+                print(row)
+        except ValueError as e:
+            print(f"Error: {e}")
+    @endcode
     """
         if not a or any(len(row) == 0 for row in a):
             raise ValueError('Matrix is empty')
@@ -307,7 +428,19 @@ class Matrix:
              3. Swap the pivot row with the current row if necessary.
              4. Eliminate the current column entries in all rows below the pivot.
              5. Count the number of non-zero pivot rows, which equals the rank of the matrix.
-    @example example_rank.py
+    @code
+    from matrix import  Matrix
+
+        a = [[1, 2, 3],
+            [4, 8, 12],
+            [7, 8, 9]]
+
+        try:
+            rank = Matrix.rank(a)
+            print(rank)
+        except ValueError as e:
+            print(f"Error: {e}")
+    @endcode
     """
         if not a or any(len(row) == 0 for row in a):
             raise ValueError('Matrix cannot be empty')
