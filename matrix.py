@@ -38,6 +38,7 @@ class Matrix:
                  C[i][j] = A[i][j] + B[i][j] (the sum of the corresponding elements of the input matrices).
         @throws ValueError If the matrices have different dimensions or if one or both matrices are empty.
                 An empty matrix is defined as having one or more empty rows, or no rows at all.
+        @par Example:
         @code
         from matrix import Matrix
 
@@ -77,6 +78,7 @@ class Matrix:
                 C[i][j] = A[i][j] - B[i][j] (the difference of the corresponding elements of the input matrices).
         @throws ValueError If the matrices have different dimensions or if one or both matrices are empty.
                 An empty matrix is defined as having one or more empty rows, or no rows at all.
+        @par Example:
         @code
             from matrix import Matrix
 
@@ -113,6 +115,7 @@ class Matrix:
                 C[i][j] = A[i][j] * num.
         @throws ValueError If the matrix is empty (has zero rows or one or more empty rows).
                 An empty matrix is defined as having one or more empty rows, or no rows at all.
+        @par Example:
         @code
         from matrix import Matrix
 
@@ -148,6 +151,7 @@ class Matrix:
         @throws ValueError If the matrices have incompatible dimensions for multiplication,
                 or if one or both matrices are empty.
                 An empty matrix is defined as having empty rows or one or more empty rows.
+        @par Example:
         @code
         from matrix import Matrix
 
@@ -182,6 +186,7 @@ class Matrix:
         @return A new matrix of size n×m where each element
                 C[i][j] = A[j][i], effectively swapping rows and columns.
         @throws ValueError If the matrix is empty. An empty matrix is defined as having empty rows or one or more empty rows.
+        @par Example:
         @code
         from matrix import Matrix
 
@@ -214,6 +219,7 @@ class Matrix:
         @throws ValueError If the matrix is empty. An empty matrix is defined as having empty
                 rows or one or more empty rows.
         @throws IndexError If either row index is out of range (less than 0 or greater than the number of rows minus one).
+        @par Example:
         @code
         from matrix import Matrix
 
@@ -249,6 +255,7 @@ class Matrix:
         @throws ValueError If the matrix is empty, or if factor is zero.
                 An empty matrix is defined as having empty rows or one or more empty rows.
         @throws IndexError If the row index is out of range (less than 0 or greater than the number of rows minus one).
+        @par Example:
         @code
         from matrix import Matrix
 
@@ -287,6 +294,7 @@ class Matrix:
         @throws ValueError If the matrix is empty, or if factor is zero.
                 An empty matrix is defined as having empty rows or one or more empty rows.
         @throws IndexError If either row index is out of range (less than 0 or greater than the number of rows minus one).
+        @par Example:
         @code
         from matrix import Matrix
 
@@ -322,6 +330,7 @@ class Matrix:
         @throws ValueError If the matrix is empty or not square.
                 An empty matrix is defined as having empty rows or one or more empty rows.
                 A non-square matrix is defined as having a number of rows not equal to the number of columns.
+        @par Example:
         @code
         from matrix import Matrix
 
@@ -379,6 +388,7 @@ class Matrix:
                 3. The pivot row is normalized so that the pivot element becomes 1.
                 4. Other rows are updated to make all elements in the pivot column zero.
                 5. After processing all rows, the right half of the augmented matrix becomes the inverse.
+        @par Example:
         @code
         from matrix import Matrix
 
@@ -428,6 +438,7 @@ class Matrix:
                 3. Swap the pivot row with the current row if necessary.
                 4. Eliminate the current column entries in all rows below the pivot.
                 5. Count the number of non-zero pivot rows, which equals the rank of the matrix.
+        @par Example:
         @code
             from matrix import  Matrix
 
