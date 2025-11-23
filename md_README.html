@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Matrices operations: Tools-lab1</title>
+<title>Matrices operations: Matrix Operations</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -90,10 +90,65 @@ $(document).ready(function(){initNavTree('md_README.html',''); initResizable(); 
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">Tools-lab1</div></div>
+  <div class="headertitle"><div class="title">Matrix Operations</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md0"></a></p>
+<div class="textblock"><p><a class="anchor" id="autotoc_md0"></a> This laboratory work is about testing basic matrix operations such as addition, subtraction, multiplication, scalar multiplication, transposition, row operations, determinant calculation, matrix inversion, and rank calculation.</p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+Features</h1>
+<ul>
+<li>Matrix addition and subtraction.</li>
+<li>Scalar multiplication and matrix multiplication.</li>
+<li>Transposition of matrices.</li>
+<li>Row operations: swap, scale, and add.</li>
+<li>Determinant calculation.</li>
+<li>Inversion of square matrices.</li>
+<li>Rank calculation.</li>
+<li>Unit tests for both normal and edge cases, including empty matrices, singular matrices, and mismatched dimensions.</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md2"></a>
+Technologies used</h1>
+<ul>
+<li>Python 3.13. Both matrix and test files are implemented in Python programming language <br  />
+</li>
+<li>unittest: built-in module in Python programming language which stands for unit testing code</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md3"></a>
+Notes</h1>
+<p><b>Matrix Dimensions</b>: Most operations require compatible dimensions. Addition and subtraction require matrices of the same size. Multiplication requires the number of columns in the first matrix to equal the number of rows in the second. Operations on incompatible matrices will raise a <code>ValueError</code>.</p>
+<p><b>Square Matrices</b>: Only square matrices (same number of rows and columns) can be inverted or have a determinant calculated. Attempting these operations on non-square matrices will raise a <code>ValueError</code>.</p>
+<p><b>Singular Matrices</b>: Matrices with zero determinant are singular and cannot be inverted. Attempting to invert a singular matrix will raise a <code>ValueError</code>.</p>
+<p><b>Empty Matrices</b>: Operations on empty matrices or matrices containing empty rows are not allowed and will raise a <code>ValueError</code>.</p>
+<p><b>Scalar Multiplication</b>: Works with both integers and floating-point numbers. Multiplying by zero will produce a zero matrix of the same size.</p>
+<p><b>Row Operations</b>:</p>
+<ul>
+<li><code>swap_rows</code>: swaps two rows of a matrix. Raises <code>IndexError</code> if the row index does not exist.</li>
+<li><code>scale_rows</code>: multiplies a row by a scalar. Raises <code>ValueError</code> if the scalar is zero.</li>
+<li><p class="startli"><code>add_rows</code>: adds a multiple of one row to another. Raises <code>IndexError</code> if a row index does not exist.</p>
+<p class="startli"><b>Testing</b>: The project includes comprehensive unit tests for normal and edge cases, ensuring correctness of all operations.</p>
+</li>
+</ul>
+<p>#Documentation</p>
+<p>Detailed technical documentation for this library, including function signatures, parameter descriptions, return values, and explicit code examples, is automatically generated and deployed.</p>
+<h2><a class="anchor" id="autotoc_md4"></a>
+Viewing the Documentation</h2>
+<p>The full documentation is available online via <b>GitHub Pages</b>:</p>
+<p><b><a href="https://mariia-serbin.github.io/Tools-lab1">Link to GitHub Pages Documentation</a></b></p>
+<h2><a class="anchor" id="autotoc_md5"></a>
+Automation</h2>
+<p>Documentation is generated using <b>Doxygen</b> and is updated automatically upon every push to the designated branch via a <b>GitHub Actions</b> workflow, ensuring that the documentation is always synchronized with the latest codebase.</p>
+<ul>
+<li><b>Tool:</b> Doxygen</li>
+<li><b>Process:</b> Continuous Integration / Continuous Deployment (CI/CD)</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md6"></a>
+Local Documentation Generation</h2>
+<p>To generate and view the documentation locally (without pushing to GitHub Actions), follow these steps:</p>
+<ol type="1">
+<li><b>Install Doxygen:</b> Ensure Doxygen (and Graphviz, if you want dependency graphs) is installed on your system. <code>bash @section autotoc_md7 Example for Debian/Ubuntu sudo apt install doxygen graphviz </code></li>
+<li><b>Run Generation:</b> Navigate to the root directory of the repository (where <code>Doxyfile</code> is located). <code>bash doxygen Doxyfile </code></li>
+<li><b>View Results:</b> Open the generated HTML file in your web browser. <code>bash @section autotoc_md8 The output path is usually defined in Doxyfile (e.g., HTML_OUTPUT) @section autotoc_md9 start ./docs/html/index.html </code> </li>
+</ol>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->

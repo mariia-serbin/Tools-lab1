@@ -25,7 +25,15 @@
 var NAVTREE =
 [
   [ "Matrices operations", "index.html", [
-    [ "Tools-lab1", "md_README.html", null ],
+    [ "Matrix Operations", "md_README.html", [
+      [ "Features", "md_README.html#autotoc_md1", null ],
+      [ "Technologies used", "md_README.html#autotoc_md2", null ],
+      [ "Notes", "md_README.html#autotoc_md3", [
+        [ "Viewing the Documentation", "md_README.html#autotoc_md4", null ],
+        [ "Automation", "md_README.html#autotoc_md5", null ],
+        [ "Local Documentation Generation", "md_README.html#autotoc_md6", null ]
+      ] ]
+    ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],

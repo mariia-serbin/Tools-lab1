@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['rank_0',['rank',['../classmatrix_1_1Matrix.html#a5f8b19b4ef0f69f49dfad9e939785650',1,'matrix::Matrix']]]
+  ['local_20documentation_20generation_0',['Local Documentation Generation',['../md_README.html#autotoc_md6',1,'']]]
 ];
