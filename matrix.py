@@ -27,19 +27,19 @@ class Matrix:
              an instance of the Matrix class — simply call the methods directly with matrices as input arguments.
     """
     @staticmethod
-    ##
-    #@brief Performs addition of two matrices with the same dimensions.
-    #@param a The first matrix to add, of size m×n. Elements can be integers or floating-point numbers,
-             ##including zero and negative values.
-    # @param b The second matrix to add, of size m×n. Elements can be integers or floating-point numbers,
-    #         including zero and negative values.
-    # @return A new matrix of the same dimensions as the input matrices, where each element
-    #         C[i][j] = A[i][j] + B[i][j] (the sum of the corresponding elements of the input matrices).
-    # @throws ValueError If the matrices have different dimensions or if one or both matrices are empty.
-    #         An empty matrix is defined as having one or more empty rows, or no rows at all.
-    # @example
-    # add([[1,2],[3,4]], [[5,6],[7,8]]) -> [[6,8],[10,12]]
     def add(a: List[List[float|int]], b: List[List[float|int]]) -> List[List[float|int]]:
+        """!
+        @brief Performs addition of two matrices with the same dimensions.
+        @param a The first matrix to add, of size m×n. Elements can be integers or floating-point numbers,
+        including zero and negative values.
+        @param b The second matrix to add, of size m×n. Elements can be integers or floating-point numbers,
+                 including zero and negative values.
+        @return A new matrix of the same dimensions as the input matrices, where each element
+                 C[i][j] = A[i][j] + B[i][j] (the sum of the corresponding elements of the input matrices).
+        @throws ValueError If the matrices have different dimensions or if one or both matrices are empty.
+                An empty matrix is defined as having one or more empty rows, or no rows at all.
+        @example example_add.py
+        """
 
         if not a or not b or any(len(row) == 0 for row in a) or any(len(row) == 0 for row in b):
             raise ValueError('Matrices are empty')
@@ -62,6 +62,7 @@ class Matrix:
             C[i][j] = A[i][j] - B[i][j] (the difference of the corresponding elements of the input matrices).
     @throws ValueError If the matrices have different dimensions or if one or both matrices are empty.
             An empty matrix is defined as having one or more empty rows, or no rows at all.
+    @example example_sub.py
     """
         if not a or not b or any(len(row) == 0 for row in a) or any(len(row) == 0 for row in b):
             raise ValueError('Matrices are empty')
@@ -83,10 +84,7 @@ class Matrix:
             C[i][j] = A[i][j] * num.
     @throws ValueError If the matrix is empty (has zero rows or one or more empty rows).
             An empty matrix is defined as having one or more empty rows, or no rows at all.
-    @example
-    multiply_scalar([[1,2],[3,4]], 2) -> [[2,4],[6,8]]
-    multiply_scalar([[1.5,2.5],[3.0,4.0]], 0.5) -> [[0.75,1.25],[1.5,2.0]]
-    multiply_scalar([[1,2],[3,4]], -1) -> [[-1,-2],[-3,-4]]
+    @example example_mul_scalar.py
     """
         if not a or any(len(row) == 0 for row in a):
             raise ValueError('Matrix is empty')
@@ -108,10 +106,8 @@ class Matrix:
             and column from B.
     @throws ValueError If the matrices have incompatible dimensions for multiplication,
             or if one or both matrices are empty.
-            An empty matrix is defined as having zero rows or one or more empty rows.
-    @example
-    multiply([[1,2],[3,4]], [[5,6],[7,8]]) -> [[19,22],[43,50]]
-    multiply([[1,0,2],[0,1,3]], [[1,2],[3,4],[5,6]]) -> [[11,16],[18,22]]
+            An empty matrix is defined as having empty rows or one or more empty rows.
+    @example example_mul.py
     """
         if not a or not b or any(len(row) == 0 for row in a) or any(len(row) == 0 for row in b):
             raise ValueError('Matrices cannot be empty for multiplying them')
@@ -130,17 +126,15 @@ class Matrix:
              including zero and negative values. The matrix must not be empty.
     @return A new matrix of size n×m where each element
             C[i][j] = A[j][i], effectively swapping rows and columns.
-    @throws ValueError If the matrix is empty. An empty matrix is defined as having zero rows or one or more empty rows.
-    @example
-    transpose([[1,2],[3,4]]) -> [[1,3],[2,4]]
-    transpose([[1,2,3],[4,5,6]]) -> [[1,4],[2,5],[3,6]]
+    @throws ValueError If the matrix is empty. An empty matrix is defined as having empty rows or one or more empty rows.
+    @example example_transpose.py
     """
         if not a or any(len(row) == 0 for row in a):
             raise ValueError('Matrix is empty or has empty rows')
         return [list(row) for row in zip(*a)]
 
     @staticmethod
-    def swap_rows(a: List[List[float|int]], i: int, j: int) -> List[List[float|int]]:
+    def swap_rows(a: List[List[float|int]], i: int, j: int):
         """!
     @brief Swaps two rows of a matrix in place.
 
@@ -148,12 +142,10 @@ class Matrix:
              including zero and negative values. The matrix must not be empty.
     @param i The index of the first row to swap (0-based, i.e., the first row is at index 0).
     @param j The index of the second row to swap (0-based, i.e., the first row is at index 0).
-    @throws ValueError If the matrix is empty. An empty matrix is defined as having zero
+    @throws ValueError If the matrix is empty. An empty matrix is defined as having empty
             rows or one or more empty rows.
     @throws IndexError If either row index is out of range (less than 0 or greater than the number of rows minus one).
-    @example
-    swap_rows([[1,2],[3,4]], 0, 1) -> [[3,4],[1,2]]
-    swap_rows([[1,2,3],[4,5,6],[7,8,9]], 0, 2) -> [[7,8,9],[4,5,6],[1,2,3]]
+    @example example_swap_rows.py
     """
         if not a or any(len(row) == 0 for row in a):
             raise ValueError('Matrix is empty')
@@ -162,7 +154,7 @@ class Matrix:
         a[i], a[j] = a[j], a[i]
 
     @staticmethod
-    def scale_rows(a: List[List[float|int]], i: int, factor: float|int) -> List[List[float|int]]:
+    def scale_rows(a: List[List[float|int]], i: int, factor: float|int):
         """!
     @brief Multiplies a single row of a matrix by a scalar factor in place.
 
@@ -172,11 +164,9 @@ class Matrix:
     @param factor The scalar multiplier. Can be any integer or floating-point number, except zero.
              Each element of the row will be multiplied by this factor.
     @throws ValueError If the matrix is empty, or if factor is zero.
-            An empty matrix is defined as having zero rows or one or more empty rows.
+            An empty matrix is defined as having empty rows or one or more empty rows.
     @throws IndexError If the row index is out of range (less than 0 or greater than the number of rows minus one).
-    @example
-    scale_rows([[1,2],[3,4]], 0, 2) -> [[2,4],[3,4]]
-    scale_rows([[1,2,3],[4,5,6]], 1, -1) -> [[1,2,3],[-4,-5,-6]]
+    @example example_scale.py
     """
         if not a or any(len(row) == 0 for row in a):
             raise ValueError('Matrix is empty')
@@ -187,7 +177,7 @@ class Matrix:
         a[i] = [x * factor for x in a[i]]
 
     @staticmethod
-    def add_rows(a: List[List[float|int]], i: int, j: int, factor: float|int = 1) -> List[List[float|int]]:
+    def add_rows(a: List[List[float|int]], i: int, j: int, factor: float|int = 1):
         """!
     @brief Adds a multiple of one row to another row in a matrix (row_i += row_j * factor).
 
@@ -197,11 +187,9 @@ class Matrix:
     @param j The index of the row to multiply by factor and add to row i (0-based).
     @param factor The scalar multiplier applied to row j before adding to row i. Defaults to 1.
     @throws ValueError If the matrix is empty, or if factor is zero.
-            An empty matrix is defined as having zero rows or one or more empty rows.
+            An empty matrix is defined as having empty rows or one or more empty rows.
     @throws IndexError If either row index is out of range (less than 0 or greater than the number of rows minus one).
-    @example
-    add_rows([[1,2],[3,4]], 0, 1) -> [[4,6],[3,4]]  # factor defaults to 1
-    add_rows([[1,2],[3,4]], 0, 1, 2) -> [[7,10],[3,4]]  # factor = 2
+    @example example_add_rows.py
     """
         if not a or any(len(row) == 0 for row in a):
             raise ValueError('Matrix is empty')
@@ -220,11 +208,9 @@ class Matrix:
              including zero and negative values. The matrix must not be empty.
     @return The determinant of the matrix as a single number (integer or float).
     @throws ValueError If the matrix is empty or not square.
-            An empty matrix is defined as having zero rows or one or more empty rows.
+            An empty matrix is defined as having empty rows or one or more empty rows.
             A non-square matrix is defined as having a number of rows not equal to the number of columns.
-    @example
-    det([[1,2],[3,4]]) -> -2
-    det([[2,0,1],[1,1,0],[3,2,1]]) -> 3
+    @example example_det.py
     """
         if not a or any(len(row) == 0 for row in a):
             raise ValueError('Matrix is empty')
@@ -259,7 +245,7 @@ class Matrix:
              including zero and negative values. The matrix must not be empty.
     @return A new matrix of size n×n representing the inverse of the input matrix.
     @throws ValueError If the matrix is empty, not square, or singular (determinant is zero).
-            An empty matrix is defined as having zero rows or one or more empty rows.
+            An empty matrix is defined as having empty rows or one or more empty rows.
             A non-square matrix is defined as having a number of rows not equal to the number of columns.
             A singular matrix is one that cannot be inverted because its determinant is zero.
     @details The function performs inversion using the Gauss-Jordan elimination algorithm:
@@ -269,9 +255,7 @@ class Matrix:
              3. The pivot row is normalized so that the pivot element becomes 1.
              4. Other rows are updated to make all elements in the pivot column zero.
              5. After processing all rows, the right half of the augmented matrix becomes the inverse.
-    @example
-    inverse([[1,2],[3,4]]) -> [[-2.0, 1.0],[1.5, -0.5]]
-    inverse([[2,0,1],[1,1,0],[3,2,1]]) -> [[-2.0, 1.0, 1.0],[1.0, 0.0, 0.0],[1.0, -1.0, 0.0]]
+    @example example_inverse.py
     """
         if not a or any(len(row) == 0 for row in a):
             raise ValueError('Matrix is empty')
@@ -301,17 +285,14 @@ class Matrix:
     @param a The matrix of size n×m. Each element can be an integer or floating-point number,
              including zero and negative values. The matrix must not be empty.
     @return The rank of the matrix as an integer, representing the number of linearly independent rows.
-    @throws ValueError If the matrix is empty. An empty matrix is defined as having zero rows or one or more empty rows.
+    @throws ValueError If the matrix is empty. An empty matrix is defined as having empty rows or one or more empty rows.
     @details The function determines the rank by performing Gaussian elimination:
              1. Iterate over each column up to the minimum of the number of rows and columns.
              2. Find a pivot row with a non-zero element in the current column.
              3. Swap the pivot row with the current row if necessary.
              4. Eliminate the current column entries in all rows below the pivot.
              5. Count the number of non-zero pivot rows, which equals the rank of the matrix.
-    @example
-    rank([[1,2],[3,4]]) -> 2
-    rank([[1,2,3],[2,4,6],[3,6,9]]) -> 1
-    rank([[1,0,0],[0,1,0],[0,0,1]]) -> 3
+    @example example_rank.py
     """
         if not a or any(len(row) == 0 for row in a):
             raise ValueError('Matrix cannot be empty')
