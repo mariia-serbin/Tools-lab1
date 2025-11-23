@@ -82,5 +82,5 @@ To generate and view the documentation locally (without pushing to GitHub Action
 3.  **View Results:** Open the generated HTML file in your web browser.
     ```bash
     # The output path is usually defined in Doxyfile (e.g., HTML_OUTPUT)
-    # start ./docs/html/index.html 
+    start ./docs/html/index.html 
     ```
