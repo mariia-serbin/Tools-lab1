@@ -47,7 +47,7 @@ This laboratory work is about testing basic matrix operations such as addition, 
 
   **Testing**: The project includes comprehensive unit tests for normal and edge cases, ensuring correctness of all operations.
 
-#Documentation
+# Documentation
 
 Detailed technical documentation for this library, including function signatures, parameter descriptions, return values, and explicit code examples, is automatically generated and deployed.
 
