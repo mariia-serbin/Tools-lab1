@@ -26,21 +26,36 @@ class Matrix:
              Each method in this class is defined as a static method, meaning you do not need to create
              an instance of the Matrix class — simply call the methods directly with matrices as input arguments.
     """
-
-    ##
-    # @brief Performs addition of two matrices with the same dimensions.
-    # @param a The first matrix to add, of size m×n. Elements can be integers or floating-point numbers,
-    # including zero and negative values.
-    # @param b The second matrix to add, of size m×n. Elements can be integers or floating-point numbers,
-    #          including zero and negative values.
-    # @return A new matrix of the same dimensions as the input matrices, where each element
-    #          C[i][j] = A[i][j] + B[i][j] (the sum of the corresponding elements of the input matrices).
-    # @throws ValueError If the matrices have different dimensions or if one or both matrices are empty.
-    #         An empty matrix is defined as having one or more empty rows, or no rows at all.
-    # @example example_add.py
-
     @staticmethod
     def add(a: List[List[float|int]], b: List[List[float|int]]) -> List[List[float|int]]:
+        """!
+        @brief Performs addition of two matrices with the same dimensions.
+        @param a The first matrix to add, of size m×n. Elements can be integers or floating-point numbers,
+        including zero and negative values.
+        @param b The second matrix to add, of size m×n. Elements can be integers or floating-point numbers,
+                 including zero and negative values.
+        @return A new matrix of the same dimensions as the input matrices, where each element
+                 C[i][j] = A[i][j] + B[i][j] (the sum of the corresponding elements of the input matrices).
+        @throws ValueError If the matrices have different dimensions or if one or both matrices are empty.
+                An empty matrix is defined as having one or more empty rows, or no rows at all.
+        @code
+        from matrix import Matrix
+
+        a = [[1, 2],
+            [3, 4]]
+        b = [[5, 6],
+            [7, 8]]
+
+        try:
+            res = Matrix.add(a, b)
+            for row in res:
+                print(row)
+        except ValueError as e:
+            print(f"Error: {e}")
+
+        @endcode
+        """
+
         if not a or not b or any(len(row) == 0 for row in a) or any(len(row) == 0 for row in b):
             raise ValueError('Matrices are empty')
         if len(a) != len(b) or len(a[0]) != len(b[0]):
