@@ -103,6 +103,7 @@ $(document).ready(function(){initNavTree('classmatrix_1_1Matrix.html',''); initR
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a9db7fa85cbf8c22523e1bdd108be1797" id="r_a9db7fa85cbf8c22523e1bdd108be1797"><td class="memItemLeft" align="right" valign="top">List[List[float|int]]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmatrix_1_1Matrix.html#a9db7fa85cbf8c22523e1bdd108be1797">add</a> (List[List[float|int]] a, List[List[float|int]] b)</td></tr>
+<tr class="memdesc:a9db7fa85cbf8c22523e1bdd108be1797"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs addition of two matrices with the same dimensions.  <br /></td></tr>
 <tr class="separator:a9db7fa85cbf8c22523e1bdd108be1797"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -143,6 +144,35 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Performs addition of two matrices with the same dimensions. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>The first matrix to add, of size m×n. Elements can be integers or floating-point numbers, including zero and negative values. </td></tr>
+    <tr><td class="paramname">b</td><td>The second matrix to add, of size m×n. Elements can be integers or floating-point numbers, including zero and negative values. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A new matrix of the same dimensions as the input matrices, where each element C[i][j] = A[i][j] + B[i][j] (the sum of the corresponding elements of the input matrices). </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">ValueError</td><td>If the matrices have different dimensions or if one or both matrices are empty. An empty matrix is defined as having one or more empty rows, or no rows at all. <div class="fragment"><div class="line"><span class="keyword">from</span> matrix <span class="keyword">import</span> Matrix</div>
+<div class="line"> </div>
+<div class="line">a = [[1, 2],</div>
+<div class="line">    [3, 4]]</div>
+<div class="line">b = [[5, 6],</div>
+<div class="line">    [7, 8]]</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordflow">try</span>:</div>
+<div class="line">    res = Matrix.add(a, b)</div>
+<div class="line">    <span class="keywordflow">for</span> row <span class="keywordflow">in</span> res:</div>
+<div class="line">print(row)</div>
+<div class="line"><span class="keywordflow">except</span> ValueError <span class="keyword">as</span> e:</div>
+<div class="line">    print(f<span class="stringliteral">&quot;Error: {e}&quot;</span>)</div>
+</div><!-- fragment --> </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
