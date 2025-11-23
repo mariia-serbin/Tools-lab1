@@ -37,7 +37,8 @@ class Matrix:
     #         C[i][j] = A[i][j] + B[i][j] (the sum of the corresponding elements of the input matrices).
     # @throws ValueError If the matrices have different dimensions or if one or both matrices are empty.
     #         An empty matrix is defined as having one or more empty rows, or no rows at all.
-
+    # @example
+    # add([[1,2],[3,4]], [[5,6],[7,8]]) -> [[6,8],[10,12]]
     def add(a: List[List[float|int]], b: List[List[float|int]]) -> List[List[float|int]]:
 
         if not a or not b or any(len(row) == 0 for row in a) or any(len(row) == 0 for row in b):
@@ -61,8 +62,6 @@ class Matrix:
             C[i][j] = A[i][j] - B[i][j] (the difference of the corresponding elements of the input matrices).
     @throws ValueError If the matrices have different dimensions or if one or both matrices are empty.
             An empty matrix is defined as having one or more empty rows, or no rows at all.
-    @example
-    subtract([[5,6],[7,8]], [[1,2],[3,4]]) -> [[4,4],[4,4]]
     """
         if not a or not b or any(len(row) == 0 for row in a) or any(len(row) == 0 for row in b):
             raise ValueError('Matrices are empty')
