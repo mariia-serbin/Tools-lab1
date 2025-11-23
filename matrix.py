@@ -67,32 +67,32 @@ class Matrix:
     @staticmethod
     def subtract(a: List[List[float|int]], b: List[List[float|int]]) -> List[List[float|int]]:
         """!
-    @brief Performs subtraction of two matrices of the same dimensions.
+        @brief Performs subtraction of two matrices of the same dimensions.
 
-    @param a The first matrix (minuend), of size m×n. Elements can be integers or floating-point numbers,
-             including zero and negative values.
-    @param b The second matrix (subtrahend), of size m×n. Elements can be integers or floating-point numbers,
-             including zero and negative values.
-    @return A new matrix of the same dimensions where each element
-            C[i][j] = A[i][j] - B[i][j] (the difference of the corresponding elements of the input matrices).
-    @throws ValueError If the matrices have different dimensions or if one or both matrices are empty.
-            An empty matrix is defined as having one or more empty rows, or no rows at all.
-    @code
-    from matrix import Matrix
+        @param a The first matrix (minuend), of size m×n. Elements can be integers or floating-point numbers,
+                including zero and negative values.
+        @param b The second matrix (subtrahend), of size m×n. Elements can be integers or floating-point numbers,
+                including zero and negative values.
+        @return A new matrix of the same dimensions where each element
+                C[i][j] = A[i][j] - B[i][j] (the difference of the corresponding elements of the input matrices).
+        @throws ValueError If the matrices have different dimensions or if one or both matrices are empty.
+                An empty matrix is defined as having one or more empty rows, or no rows at all.
+        @code
+            from matrix import Matrix
 
-        a = [[1, 2],
-            [3, 4]]
-        b = [[5, 6],
-            [7, 8]]
+            a = [[1, 2],
+                [3, 4]]
+            b = [[5, 6],
+                [7, 8]]
 
-        try:
-            res = Matrix.subtract(a, b)
-            for row in res:
-                print(row)
-        except ValueError as e:
-            print(f"Error: {e}")
-    @endcode
-    """
+            try:
+                res = Matrix.subtract(a, b)
+                for row in res:
+                    print(row)
+            except ValueError as e:
+                print(f"Error: {e}")
+        @endcode
+        """
         if not a or not b or any(len(row) == 0 for row in a) or any(len(row) == 0 for row in b):
             raise ValueError('Matrices are empty')
         if len(a) != len(b) or len(a[0]) != len(b[0]):
@@ -103,30 +103,30 @@ class Matrix:
     @staticmethod
     def multiply_scalar(a: List[List[float|int]], num: float|int) -> List[List[float|int]]:
         """!
-    @brief Multiplies every element of a matrix by a scalar value.
+        @brief Multiplies every element of a matrix by a scalar value.
 
-    @param a The matrix to multiply, of size m×n. Each element can be an integer or floating-point number,
-             including zero and negative values. The matrix must not be empty (cannot have zero rows or empty rows).
-    @param num The scalar multiplier. Can be any integer or floating-point number, including zero or negative numbers.
-             Each element of the matrix will be multiplied by this scalar.
-    @return A new matrix of the same dimensions as the input matrix, where each element
-            C[i][j] = A[i][j] * num.
-    @throws ValueError If the matrix is empty (has zero rows or one or more empty rows).
-            An empty matrix is defined as having one or more empty rows, or no rows at all.
-    @code
-    from matrix import Matrix
+        @param a The matrix to multiply, of size m×n. Each element can be an integer or floating-point number,
+                including zero and negative values. The matrix must not be empty (cannot have zero rows or empty rows).
+        @param num The scalar multiplier. Can be any integer or floating-point number, including zero or negative numbers.
+                Each element of the matrix will be multiplied by this scalar.
+        @return A new matrix of the same dimensions as the input matrix, where each element
+                C[i][j] = A[i][j] * num.
+        @throws ValueError If the matrix is empty (has zero rows or one or more empty rows).
+                An empty matrix is defined as having one or more empty rows, or no rows at all.
+        @code
+        from matrix import Matrix
 
-        a = [[1, 2],
-            [3, 4]]
-        scalar = 5
-        try:
-            res = Matrix.multiply_scalar(a, scalar)
-            for row in res:
-                print(row)
-        except ValueError as e:
-            print(f"Error: {e}")
-    @endcode
-    """
+            a = [[1, 2],
+                [3, 4]]
+            scalar = 5
+            try:
+                res = Matrix.multiply_scalar(a, scalar)
+                for row in res:
+                    print(row)
+            except ValueError as e:
+                print(f"Error: {e}")
+        @endcode
+        """
         if not a or any(len(row) == 0 for row in a):
             raise ValueError('Matrix is empty')
         return [[x * num for x in row] for row in a]
@@ -134,36 +134,36 @@ class Matrix:
     @staticmethod
     def multiply(a: List[List[float|int]], b: List[List[float|int]]) -> List[List[float|int]]:
         """!
-    @brief Performs matrix multiplication of two matrices (A * B).
+        @brief Performs matrix multiplication of two matrices (A * B).
 
-    @param a The first matrix (A) of size n×m. Each element can be an integer or floating-point number,
-             including zero and negative values. The matrix must not be empty (cannot have zero rows or empty rows).
-    @param b The second matrix (B) of size m×p. Each element can be an integer or floating-point number,
-             including zero and negative values. The matrix must not be empty (cannot have zero rows or empty rows).
-             The number of rows in B must equal the number of columns in A (m) for multiplication to be valid.
-    @return A new matrix of size n×p where each element
-            C[i][j] = sum(A[i][k] * B[k][j] for k in range(m)).
-            Each element of the result is calculated as the sum of products of the corresponding row from A
-            and column from B.
-    @throws ValueError If the matrices have incompatible dimensions for multiplication,
-            or if one or both matrices are empty.
-            An empty matrix is defined as having empty rows or one or more empty rows.
-    @code
-    from matrix import Matrix
+        @param a The first matrix (A) of size n×m. Each element can be an integer or floating-point number,
+                including zero and negative values. The matrix must not be empty (cannot have zero rows or empty rows).
+        @param b The second matrix (B) of size m×p. Each element can be an integer or floating-point number,
+                including zero and negative values. The matrix must not be empty (cannot have zero rows or empty rows).
+                The number of rows in B must equal the number of columns in A (m) for multiplication to be valid.
+        @return A new matrix of size n×p where each element
+                C[i][j] = sum(A[i][k] * B[k][j] for k in range(m)).
+                Each element of the result is calculated as the sum of products of the corresponding row from A
+                and column from B.
+        @throws ValueError If the matrices have incompatible dimensions for multiplication,
+                or if one or both matrices are empty.
+                An empty matrix is defined as having empty rows or one or more empty rows.
+        @code
+        from matrix import Matrix
 
-        a = [[1, 2],
-            [3, 4]]
-        b = [[5, 6],
-            [7, 8]]
+            a = [[1, 2],
+                [3, 4]]
+            b = [[5, 6],
+                [7, 8]]
 
-        try:
-            res = Matrix.multiply(a, b)
-            for row in res:
-        print(row)
-except ValueError as e:
-    print(f"Error: {e}")
-    @endcode
-    """
+            try:
+                res = Matrix.multiply(a, b)
+                for row in res:
+                    print(row)
+            except ValueError as e:
+                print(f"Error: {e}")
+        @endcode
+        """
         if not a or not b or any(len(row) == 0 for row in a) or any(len(row) == 0 for row in b):
             raise ValueError('Matrices cannot be empty for multiplying them')
         n_a, m_a = len(a), len(a[0])
@@ -175,29 +175,29 @@ except ValueError as e:
     @staticmethod
     def transpose(a: List[List[float|int]]) -> List[List[float|int]]:
         """!
-    @brief Returns the transposed matrix of the input matrix (rows become columns and columns become rows).
+        @brief Returns the transposed matrix of the input matrix (rows become columns and columns become rows).
 
-    @param a The matrix to transpose, of size m×n. Each element can be an integer or floating-point number,
-             including zero and negative values. The matrix must not be empty.
-    @return A new matrix of size n×m where each element
-            C[i][j] = A[j][i], effectively swapping rows and columns.
-    @throws ValueError If the matrix is empty. An empty matrix is defined as having empty rows or one or more empty rows.
-    @code
-    from matrix import Matrix
+        @param a The matrix to transpose, of size m×n. Each element can be an integer or floating-point number,
+                including zero and negative values. The matrix must not be empty.
+        @return A new matrix of size n×m where each element
+                C[i][j] = A[j][i], effectively swapping rows and columns.
+        @throws ValueError If the matrix is empty. An empty matrix is defined as having empty rows or one or more empty rows.
+        @code
+        from matrix import Matrix
 
-        a = [[0, 1],
-            [2, 3],
-            [4, 5],
-            [6, 7]]
+            a = [[0, 1],
+                [2, 3],
+                [4, 5],
+                [6, 7]]
 
-        try:
-            res = Matrix.transpose(a)
-            for row in res:
-                print(row)
-        except ValueError as e:
-            print(f"Error: {e}")
-    @endcode
-    """
+            try:
+                res = Matrix.transpose(a)
+                for row in res:
+                    print(row)
+            except ValueError as e:
+                print(f"Error: {e}")
+        @endcode
+        """
         if not a or any(len(row) == 0 for row in a):
             raise ValueError('Matrix is empty or has empty rows')
         return [list(row) for row in zip(*a)]
@@ -205,31 +205,31 @@ except ValueError as e:
     @staticmethod
     def swap_rows(a: List[List[float|int]], i: int, j: int):
         """!
-    @brief Swaps two rows of a matrix in place.
+        @brief Swaps two rows of a matrix in place.
 
-    @param a The matrix to modify, of size m×n. Each element can be an integer or floating-point number,
-             including zero and negative values. The matrix must not be empty.
-    @param i The index of the first row to swap (0-based, i.e., the first row is at index 0).
-    @param j The index of the second row to swap (0-based, i.e., the first row is at index 0).
-    @throws ValueError If the matrix is empty. An empty matrix is defined as having empty
-            rows or one or more empty rows.
-    @throws IndexError If either row index is out of range (less than 0 or greater than the number of rows minus one).
-    @code
-    from matrix import Matrix
+        @param a The matrix to modify, of size m×n. Each element can be an integer or floating-point number,
+                including zero and negative values. The matrix must not be empty.
+        @param i The index of the first row to swap (0-based, i.e., the first row is at index 0).
+        @param j The index of the second row to swap (0-based, i.e., the first row is at index 0).
+        @throws ValueError If the matrix is empty. An empty matrix is defined as having empty
+                rows or one or more empty rows.
+        @throws IndexError If either row index is out of range (less than 0 or greater than the number of rows minus one).
+        @code
+        from matrix import Matrix
 
-        a = [[1, 2, 3],
-            [4, 5, 6],
-            [7, 8, 9]]
-        i, j = 0, 2
+            a = [[1, 2, 3],
+                [4, 5, 6],
+                [7, 8, 9]]
+            i, j = 0, 2
 
-        try:
-            Matrix.swap_rows(a, i, j)
-            for row in a:
-                print(row)
-        except (ValueError, IndexError) as e:
-            print(f"Error: {e}")
-    @endcode
-    """
+            try:
+                Matrix.swap_rows(a, i, j)
+                for row in a:
+                    print(row)
+            except (ValueError, IndexError) as e:
+                print(f"Error: {e}")
+        @endcode
+        """
         if not a or any(len(row) == 0 for row in a):
             raise ValueError('Matrix is empty')
         if i >= len(a) or j >= len(a) or i < 0 or j < 0:
@@ -239,33 +239,33 @@ except ValueError as e:
     @staticmethod
     def scale_rows(a: List[List[float|int]], i: int, factor: float|int):
         """!
-    @brief Multiplies a single row of a matrix by a scalar factor in place.
+        @brief Multiplies a single row of a matrix by a scalar factor in place.
 
-    @param a The matrix to modify, of size m×n. Each element can be an integer or floating-point number,
-             including zero and negative values. The matrix must not be empty.
-    @param i The index of the row to scale (0-based, i.e., the first row is at index 0).
-    @param factor The scalar multiplier. Can be any integer or floating-point number, except zero.
-             Each element of the row will be multiplied by this factor.
-    @throws ValueError If the matrix is empty, or if factor is zero.
-            An empty matrix is defined as having empty rows or one or more empty rows.
-    @throws IndexError If the row index is out of range (less than 0 or greater than the number of rows minus one).
-    @code
-    from matrix import Matrix
+        @param a The matrix to modify, of size m×n. Each element can be an integer or floating-point number,
+                including zero and negative values. The matrix must not be empty.
+        @param i The index of the row to scale (0-based, i.e., the first row is at index 0).
+        @param factor The scalar multiplier. Can be any integer or floating-point number, except zero.
+                Each element of the row will be multiplied by this factor.
+        @throws ValueError If the matrix is empty, or if factor is zero.
+                An empty matrix is defined as having empty rows or one or more empty rows.
+        @throws IndexError If the row index is out of range (less than 0 or greater than the number of rows minus one).
+        @code
+        from matrix import Matrix
 
-        a = [[1, 2, 3],
-            [4, 5, 17],
-            [18, 6, 20]]
-        factor = 0.5
-        i = 1
+            a = [[1, 2, 3],
+                [4, 5, 17],
+                [18, 6, 20]]
+            factor = 0.5
+            i = 1
 
-        try:
-            Matrix.scale_rows(a, i, factor)
-            for row in a:
-                print(row)
-        except ValueError as e:
-            print(f"Error: {e}")
-    @endcode
-    """
+            try:
+                Matrix.scale_rows(a, i, factor)
+                for row in a:
+                    print(row)
+            except ValueError as e:
+                print(f"Error: {e}")
+        @endcode
+        """
         if not a or any(len(row) == 0 for row in a):
             raise ValueError('Matrix is empty')
         if i >= len(a) or i < 0:
@@ -277,31 +277,31 @@ except ValueError as e:
     @staticmethod
     def add_rows(a: List[List[float|int]], i: int, j: int, factor: float|int = 1):
         """!
-    @brief Adds a multiple of one row to another row in a matrix (row_i += row_j * factor).
+        @brief Adds a multiple of one row to another row in a matrix (row_i += row_j * factor).
 
-    @param a The matrix to modify, of size m×n. Each element can be an integer or floating-point number,
-             including zero and negative values. The matrix must not be empty.
-    @param i The index of the row to which another row will be added (0-based, i.e., the first row is at index 0).
-    @param j The index of the row to multiply by factor and add to row i (0-based).
-    @param factor The scalar multiplier applied to row j before adding to row i. Defaults to 1.
-    @throws ValueError If the matrix is empty, or if factor is zero.
-            An empty matrix is defined as having empty rows or one or more empty rows.
-    @throws IndexError If either row index is out of range (less than 0 or greater than the number of rows minus one).
-    @code
-    from matrix import Matrix
+        @param a The matrix to modify, of size m×n. Each element can be an integer or floating-point number,
+                including zero and negative values. The matrix must not be empty.
+        @param i The index of the row to which another row will be added (0-based, i.e., the first row is at index 0).
+        @param j The index of the row to multiply by factor and add to row i (0-based).
+        @param factor The scalar multiplier applied to row j before adding to row i. Defaults to 1.
+        @throws ValueError If the matrix is empty, or if factor is zero.
+                An empty matrix is defined as having empty rows or one or more empty rows.
+        @throws IndexError If either row index is out of range (less than 0 or greater than the number of rows minus one).
+        @code
+        from matrix import Matrix
 
-        a = [[1, 2, 3],
-            [4, 5, 6],
-            [7, 8, 9]]
-        i, j, factor = 0, 1, 3
+            a = [[1, 2, 3],
+                [4, 5, 6],
+                [7, 8, 9]]
+            i, j, factor = 0, 1, 3
 
-        try:
-            Matrix.add_rows(a, i, j, factor)
-            for row in a:
-                print(row)
-        except (ValueError, IndexError) as e:
-            print(f"Error: {e}")
-    @endcode
+            try:
+                Matrix.add_rows(a, i, j, factor)
+                for row in a:
+                    print(row)
+            except (ValueError, IndexError) as e:
+                print(f"Error: {e}")
+        @endcode
     """
         if not a or any(len(row) == 0 for row in a):
             raise ValueError('Matrix is empty')
@@ -314,28 +314,28 @@ except ValueError as e:
     @staticmethod
     def det(a: List[List[float|int]]) -> float|int:
         """!
-    @brief Computes the determinant of a square matrix.
+        @brief Computes the determinant of a square matrix.
 
-    @param a The square matrix of size n×n. Each element can be an integer or floating-point number,
-             including zero and negative values. The matrix must not be empty.
-    @return The determinant of the matrix as a single number (integer or float).
-    @throws ValueError If the matrix is empty or not square.
-            An empty matrix is defined as having empty rows or one or more empty rows.
-            A non-square matrix is defined as having a number of rows not equal to the number of columns.
-    @code
-    from matrix import Matrix
+        @param a The square matrix of size n×n. Each element can be an integer or floating-point number,
+                including zero and negative values. The matrix must not be empty.
+        @return The determinant of the matrix as a single number (integer or float).
+        @throws ValueError If the matrix is empty or not square.
+                An empty matrix is defined as having empty rows or one or more empty rows.
+                A non-square matrix is defined as having a number of rows not equal to the number of columns.
+        @code
+        from matrix import Matrix
 
-        a = [[1, 2, 3],
-            [4, 5, 6],
-            [7, 8, 9]]
+            a = [[1, 2, 3],
+                [4, 5, 6],
+                [7, 8, 9]]
 
-        try:
-            det = Matrix.det(a)
-            print(det)
-        except ValueError as e:
-            print(f"Error: {e}")
-    @endcode
-    """
+            try:
+                det = Matrix.det(a)
+                print(det)
+            except ValueError as e:
+                print(f"Error: {e}")
+        @endcode
+        """
         if not a or any(len(row) == 0 for row in a):
             raise ValueError('Matrix is empty')
         n = len(a)
@@ -363,36 +363,36 @@ except ValueError as e:
     @staticmethod
     def inverse(a: List[List[float|int]]) -> List[List[float|int]]:
         """!
-    @brief Computes the inverse of a square matrix using the Gauss-Jordan elimination method.
+        @brief Computes the inverse of a square matrix using the Gauss-Jordan elimination method.
 
-    @param a The square matrix of size n×n. Each element can be an integer or floating-point number,
-             including zero and negative values. The matrix must not be empty.
-    @return A new matrix of size n×n representing the inverse of the input matrix.
-    @throws ValueError If the matrix is empty, not square, or singular (determinant is zero).
-            An empty matrix is defined as having empty rows or one or more empty rows.
-            A non-square matrix is defined as having a number of rows not equal to the number of columns.
-            A singular matrix is one that cannot be inverted because its determinant is zero.
-    @details The function performs inversion using the Gauss-Jordan elimination algorithm:
-             1. The matrix is augmented with the identity matrix of the same size.
-             2. For each pivot row, the row with the largest absolute value in the current column
-                is swapped to the pivot position (partial pivoting).
-             3. The pivot row is normalized so that the pivot element becomes 1.
-             4. Other rows are updated to make all elements in the pivot column zero.
-             5. After processing all rows, the right half of the augmented matrix becomes the inverse.
-    @code
-    from matrix import Matrix
+        @param a The square matrix of size n×n. Each element can be an integer or floating-point number,
+                including zero and negative values. The matrix must not be empty.
+        @return A new matrix of size n×n representing the inverse of the input matrix.
+        @throws ValueError If the matrix is empty, not square, or singular (determinant is zero).
+                An empty matrix is defined as having empty rows or one or more empty rows.
+                A non-square matrix is defined as having a number of rows not equal to the number of columns.
+                A singular matrix is one that cannot be inverted because its determinant is zero.
+        @details The function performs inversion using the Gauss-Jordan elimination algorithm:
+                1. The matrix is augmented with the identity matrix of the same size.
+                2. For each pivot row, the row with the largest absolute value in the current column
+                    is swapped to the pivot position (partial pivoting).
+                3. The pivot row is normalized so that the pivot element becomes 1.
+                4. Other rows are updated to make all elements in the pivot column zero.
+                5. After processing all rows, the right half of the augmented matrix becomes the inverse.
+        @code
+        from matrix import Matrix
 
-        a = [[1, 0, 0],
-            [0, 1, 0],
-            [0, 0, 1]]
-        try:
-            inverted = Matrix.inverse(a)
-            for row in inverted:
-                print(row)
-        except ValueError as e:
-            print(f"Error: {e}")
-    @endcode
-    """
+            a = [[1, 0, 0],
+                [0, 1, 0],
+                [0, 0, 1]]
+            try:
+                inverted = Matrix.inverse(a)
+                for row in inverted:
+                    print(row)
+            except ValueError as e:
+                print(f"Error: {e}")
+        @endcode
+        """
         if not a or any(len(row) == 0 for row in a):
             raise ValueError('Matrix is empty')
         n = len(a)
@@ -416,32 +416,32 @@ except ValueError as e:
     @staticmethod
     def rank(a: List[List[float|int]]) -> int:
         """!
-    @brief Computes the rank of a matrix using Gaussian elimination.
+        @brief Computes the rank of a matrix using Gaussian elimination.
 
-    @param a The matrix of size n×m. Each element can be an integer or floating-point number,
-             including zero and negative values. The matrix must not be empty.
-    @return The rank of the matrix as an integer, representing the number of linearly independent rows.
-    @throws ValueError If the matrix is empty. An empty matrix is defined as having empty rows or one or more empty rows.
-    @details The function determines the rank by performing Gaussian elimination:
-             1. Iterate over each column up to the minimum of the number of rows and columns.
-             2. Find a pivot row with a non-zero element in the current column.
-             3. Swap the pivot row with the current row if necessary.
-             4. Eliminate the current column entries in all rows below the pivot.
-             5. Count the number of non-zero pivot rows, which equals the rank of the matrix.
-    @code
-    from matrix import  Matrix
+        @param a The matrix of size n×m. Each element can be an integer or floating-point number,
+                including zero and negative values. The matrix must not be empty.
+        @return The rank of the matrix as an integer, representing the number of linearly independent rows.
+        @throws ValueError If the matrix is empty. An empty matrix is defined as having empty rows or one or more empty rows.
+        @details The function determines the rank by performing Gaussian elimination:
+                1. Iterate over each column up to the minimum of the number of rows and columns.
+                2. Find a pivot row with a non-zero element in the current column.
+                3. Swap the pivot row with the current row if necessary.
+                4. Eliminate the current column entries in all rows below the pivot.
+                5. Count the number of non-zero pivot rows, which equals the rank of the matrix.
+        @code
+            from matrix import  Matrix
 
-        a = [[1, 2, 3],
-            [4, 8, 12],
-            [7, 8, 9]]
+            a = [[1, 2, 3],
+                [4, 8, 12],
+                [7, 8, 9]]
 
-        try:
-            rank = Matrix.rank(a)
-            print(rank)
-        except ValueError as e:
-            print(f"Error: {e}")
-    @endcode
-    """
+            try:
+                rank = Matrix.rank(a)
+                print(rank)
+            except ValueError as e:
+                print(f"Error: {e}")
+        @endcode
+        """
         if not a or any(len(row) == 0 for row in a):
             raise ValueError('Matrix cannot be empty')
         n, m = len(a), len(a[0])
