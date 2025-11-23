@@ -1,0 +1,31 @@
+name: Generate and deploy Doxygen documents
+
+on:
+  push:
+    branches:
+      - features/docs-ci
+
+jobs:
+  build:
+    permissions:
+      contents: write
+    runs-on:
+      ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Doxygen
+        run: sudo apt-get update && sudo apt-get install doxygen -y doxygen graphviz
+
+      - name: Generate documentation
+        run: doxygen Doxyfile
+
+      - name: Create .nojekyll file
+        run: touch ./docs/html/.nojekyll
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/html

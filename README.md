@@ -47,3 +47,40 @@ This laboratory work is about testing basic matrix operations such as addition, 
 
   **Testing**: The project includes comprehensive unit tests for normal and edge cases, ensuring correctness of all operations.
 
+# Documentation
+
+Detailed technical documentation for this library, including function signatures, parameter descriptions, return values, and explicit code examples, is automatically generated and deployed.
+
+## Viewing the Documentation
+
+The full documentation is available online via **GitHub Pages**:
+
+**[Link to GitHub Pages Documentation](https://mariia-serbin.github.io/Tools-lab1)**
+
+## Automation
+
+Documentation is generated using **Doxygen** and is updated automatically upon every push to the designated branch via a **GitHub Actions** workflow, ensuring that the documentation is always synchronized with the latest codebase.
+
+* **Tool:** Doxygen
+* **Process:** Continuous Integration / Continuous Deployment (CI/CD)
+
+## Local Documentation Generation
+
+To generate and view the documentation locally (without pushing to GitHub Actions), follow these steps:
+
+1.  **Install Doxygen:** Ensure Doxygen (and Graphviz, if you want dependency graphs) is installed on your system.
+    ```bash
+    # Example for Debian/Ubuntu
+    sudo apt install doxygen graphviz
+    ```
+
+2.  **Run Generation:** Navigate to the root directory of the repository (where `Doxyfile` is located).
+    ```bash
+    doxygen Doxyfile
+    ```
+
+3.  **View Results:** Open the generated HTML file in your web browser.
+    ```bash
+    # The output path is usually defined in Doxyfile (e.g., HTML_OUTPUT)
+    start ./docs/html/index.html 
+    ```
