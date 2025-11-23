@@ -35,15 +35,5 @@ var classmatrix__tests_1_1MatrixTests =
     [ "test_swap_empty", "classmatrix__tests_1_1MatrixTests.html#aba5b2f74ff850c9ce696af1e349fd858", null ],
     [ "test_swap_not_exists", "classmatrix__tests_1_1MatrixTests.html#a0729c72581a11feb4a8551f61ea6b416", null ],
     [ "test_transpose", "classmatrix__tests_1_1MatrixTests.html#ae7862e4a979718b8473debec5ebd8a80", null ],
-    [ "test_transpose_empty", "classmatrix__tests_1_1MatrixTests.html#ad71fb7d80ced56c22067f8f5377c598c", null ],
-    [ "factor", "classmatrix__tests_1_1MatrixTests.html#a5da8caaf13850c7dc52281b7b081ac3b", null ],
-    [ "I", "classmatrix__tests_1_1MatrixTests.html#ac3c1d8e795fcac795c5a8fdd2f6163dc", null ],
-    [ "integer", "classmatrix__tests_1_1MatrixTests.html#a8954e87d23179e149f1465eb4b950b11", null ],
-    [ "matrix_INV", "classmatrix__tests_1_1MatrixTests.html#a6095037076441acab862bab1b62b4471", null ],
-    [ "matrix_same_dim_a", "classmatrix__tests_1_1MatrixTests.html#ae9f85ded02cb2bff279e8cc14560e45b", null ],
-    [ "matrix_same_dim_b", "classmatrix__tests_1_1MatrixTests.html#ac4fd689b2012464a197c24192b469dae", null ],
-    [ "matrix_SINGULAR", "classmatrix__tests_1_1MatrixTests.html#ae0359d64251569501c2a758aeb1f18e3", null ],
-    [ "to_mul1", "classmatrix__tests_1_1MatrixTests.html#a9acc1df4112e5a2641df6e9ee5c61833", null ],
-    [ "to_mul2", "classmatrix__tests_1_1MatrixTests.html#a632d4fe5e3f8bf178fedf91e67a40897", null ],
-    [ "Z", "classmatrix__tests_1_1MatrixTests.html#a12c93efef75266f1f1aa6743d8ee8b94", null ]
+    [ "test_transpose_empty", "classmatrix__tests_1_1MatrixTests.html#ad71fb7d80ced56c22067f8f5377c598c", null ]
 ];
