@@ -6,11 +6,11 @@ PROJECT_BRIEF          = Matrix operations and unit-testing for lab-1 project on
 OUTPUT_DIRECTORY       =docs
 OUTPUT_LANGUAGE        = English
 PYTHON_DOCSTRING       = YES
-EXTENSION_MAPPING      = .py=Python
+EXTENSION_MAPPING      = py=Python
 MARKDOWN_SUPPORT       = YES
 MARKDOWN_STRICT        = YES
 MARKDOWN_ID_STYLE      = DOXYGEN
-EXTRACT_ALL            = YES
+EXTRACT_ALL            = NO
 EXTRACT_PRIVATE        = YES
 EXTRACT_STATIC        = YES
 EXTRACT_PACKAGE        = NO
