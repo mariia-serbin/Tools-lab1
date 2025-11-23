@@ -1,6 +1,6 @@
 var examples =
 [
-    [ "(List[List[float|int]] a, List[List[float|int]] b)", "example_add_8py-example.html", null ],
+    [ "example_add.py", "example_add_8py-example.html", null ],
     [ "(List[List[float|int]] a, List[List[float|int]] b)", "example_sub_8py-example.html", null ],
     [ "(List[List[float|int]] a, float|int num)", "example_mul_scalar_8py-example.html", null ],
     [ "(List[List[float|int]] a, List[List[float|int]] b)", "example_mul_8py-example.html", null ],
